@@ -1,2 +1,0 @@
-class PMetadatum < ApplicationRecord
-end

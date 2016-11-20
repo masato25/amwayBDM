@@ -1,0 +1,2 @@
+class PMetadata < ApplicationRecord
+end

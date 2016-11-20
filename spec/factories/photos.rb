@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :photo do
-    photo "MyString"
     type ""
-    referid 1
+    refer_id 1
   end
 end

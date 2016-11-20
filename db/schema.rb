@@ -13,14 +13,12 @@
 ActiveRecord::Schema.define(version: 20161120072150) do
 
   create_table "brands", force: :cascade do |t|
-    t.string   "brand"
     t.string   "BrandName"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "details", force: :cascade do |t|
-    t.string   "detail"
     t.boolean  "IsShow"
     t.string   "DetailName"
     t.text     "Feature"
@@ -33,7 +31,6 @@ ActiveRecord::Schema.define(version: 20161120072150) do
   end
 
   create_table "p_classes", force: :cascade do |t|
-    t.string   "pclass"
     t.string   "SNColor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -42,7 +39,6 @@ ActiveRecord::Schema.define(version: 20161120072150) do
   end
 
   create_table "p_metadata", force: :cascade do |t|
-    t.string   "pmetadata"
     t.string   "SN"
     t.string   "Volume"
     t.integer  "Price"
@@ -54,7 +50,6 @@ ActiveRecord::Schema.define(version: 20161120072150) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.string   "photo"
     t.string   "type"
     t.integer  "refer_id"
     t.datetime "created_at", null: false
@@ -62,15 +57,12 @@ ActiveRecord::Schema.define(version: 20161120072150) do
   end
 
   create_table "series", force: :cascade do |t|
-    t.string   "series"
     t.string   "SeriesName"
     t.string   "TitleColor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
     t.integer  "brand_id"
     t.index ["brand_id"], name: "index_series_on_brand_id"
-    t.index ["user_id"], name: "index_series_on_user_id"
   end
 
 end
