@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pmetadata: MyString
+  SN: MyString
+  Volume: MyString
+  Price: 
+  Color: MyString
+
+two:
+  pmetadata: MyString
+  SN: MyString
+  Volume: MyString
+  Price: 
+  Color: MyString

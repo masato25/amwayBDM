@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  detail: MyString
+  IsShow: false
+  DetailName: MyString
+  Feature: MyText
+  HealthyFeature: MyText
+  HealthyTip: MyText
+
+two:
+  detail: MyString
+  IsShow: false
+  DetailName: MyString
+  Feature: MyText
+  HealthyFeature: MyText
+  HealthyTip: MyText
