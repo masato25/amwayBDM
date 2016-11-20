@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120065640) do
+ActiveRecord::Schema.define(version: 20161120072150) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "brand"
@@ -28,7 +28,8 @@ ActiveRecord::Schema.define(version: 20161120065640) do
     t.text     "HealthyTip"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "seriesID"
+    t.integer  "series_id"
+    t.index ["series_id"], name: "index_details_on_series_id"
   end
 
   create_table "p_classes", force: :cascade do |t|
@@ -36,7 +37,8 @@ ActiveRecord::Schema.define(version: 20161120065640) do
     t.string   "SNColor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "detailID"
+    t.integer  "detail_id"
+    t.index ["detail_id"], name: "index_p_classes_on_detail_id"
   end
 
   create_table "p_metadata", force: :cascade do |t|
@@ -47,13 +49,14 @@ ActiveRecord::Schema.define(version: 20161120065640) do
     t.string   "Color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "classID"
+    t.integer  "class_id"
+    t.index ["class_id"], name: "index_p_metadata_on_class_id"
   end
 
   create_table "photos", force: :cascade do |t|
     t.string   "photo"
     t.string   "type"
-    t.integer  "referid"
+    t.integer  "refer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,7 +67,10 @@ ActiveRecord::Schema.define(version: 20161120065640) do
     t.string   "TitleColor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "brandID"
+    t.integer  "user_id"
+    t.integer  "brand_id"
+    t.index ["brand_id"], name: "index_series_on_brand_id"
+    t.index ["user_id"], name: "index_series_on_user_id"
   end
 
 end

@@ -3,7 +3,7 @@ class CreatePhotos < ActiveRecord::Migration[5.0]
     create_table :photos do |t|
       t.string :photo
       t.string :type
-      t.integer :referid
+      t.integer :refer_id
 
       t.timestamps
     end
