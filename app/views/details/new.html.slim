@@ -1,0 +1,28 @@
+= render 'shared/layout'
+    div class="page-header"
+     h1 建立產品頁面
+    = render 'shared/notice'
+    = form_for @detail do |f|
+      div class="form-group" id="detail-form"
+        = f.label "BrandName"
+        input type="text" name="brandname" id="brandFind" class='form-control'
+      div class="form-group"
+        = f.label :SeriesName
+        input type="text" name="seriesname" id="brandFind" class='form-control'
+      div class="form-group"
+        = f.label :DetailName
+        = f.text_field :DetailName, class: 'form-control'
+      div class="form-group" 
+        = f.label :Feature
+        = f.text_field :Feature, class: 'form-control'
+      div class="form-group" 
+        = f.label :HealthyFeature
+        = f.text_field :HealthyFeature, class: 'form-control'
+      div class="form-group" 
+        = f.label :HealthyTip
+        = f.text_field :HealthyTip, class: 'form-control'
+      div class="form-group" 
+        = f.label :SNColor
+        = f.text_field :SNColor, class: 'form-control'
+      = f.submit '儲存', class: 'btn btn-primary' 
+    = link_to '回首頁', action: "index"

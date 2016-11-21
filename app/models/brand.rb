@@ -1,3 +1,5 @@
 class Brand < ApplicationRecord
-  has_many :series
+  validates_uniqueness_of :BrandName
+  validates_presence_of :BrandName
+  has_many :series, dependent: :destroy
 end

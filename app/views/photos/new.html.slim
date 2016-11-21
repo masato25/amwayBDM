@@ -1,0 +1,14 @@
+= render 'shared/layout'
+    div class="page-header"
+     h1 "UploadImage"
+     
+    = form_for @photo do |f|
+      = render 'shared/errors', object: @photo      
+      div class="form-group" 
+        = f.label :mtype
+        = f.text_field :mtype, class: 'form-control'
+      div class="form-group"
+        = f.label :image
+        = f.file_field :image, class: 'form-control'
+
+      = f.submit 'Upload', class: 'btn btn-primary' 

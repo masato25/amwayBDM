@@ -1,4 +1,4 @@
-class PhotoController < ApplicationController
+class PhotosController < ApplicationController
   def index
     @photos = Photo.order('created_at')
   end
@@ -11,7 +11,7 @@ class PhotoController < ApplicationController
     @photo = Photo.new(photo_params)
     if @photo.save
       flash[:success] = "The photo was added!"
-      redirect_to root_path
+      redirect_to photos_path
     else
       render 'new'
     end
@@ -20,6 +20,6 @@ class PhotoController < ApplicationController
   private
 
   def photo_params
-    params.require(:photo).permit(:image, :title)
+    params.require(:photo).permit(:mtype, :refer_id, :image)
   end
 end

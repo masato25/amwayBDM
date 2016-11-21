@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :photo do
-    type ""
+    mtype ""
     refer_id 1
   end
 end

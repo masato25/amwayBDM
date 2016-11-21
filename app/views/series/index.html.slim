@@ -1,0 +1,19 @@
+= render 'shared/layout'
+  = link_to '建立系列', new_brand_series_path
+  div class="page-header"
+    h1 產品系列
+    = render 'shared/notice'
+    table class="table"
+      thead
+        tr
+          th 系列名稱
+          th 系列標題顏色
+          th 修改
+          th 刪除
+      tbody
+        - @series.each do |s|
+          tr
+            td = s.SeriesName
+            td = s.TitleColor
+            td = link_to '修改', controller: "series", action: "edit", id: s.id
+            / td = link_to '刪除', s, method: :delete, data: { confirm: '確定刪除?' }

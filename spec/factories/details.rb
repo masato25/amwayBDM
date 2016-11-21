@@ -5,5 +5,6 @@ FactoryGirl.define do
     Feature '這個產品有很多功用'
     HealthyFeature '對健康有幫助'
     HealthyTip '吃很多很好'
+    SNColor 'red'
   end
 end

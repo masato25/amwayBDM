@@ -1,0 +1,15 @@
+= render 'shared/layout'
+  = link_to '建立產品頁面', new_detail_path
+  div class="page-header"
+    h1 產品一覽
+    = render 'shared/notice'
+    table class="table"
+      thead
+        tr
+          th 產品名稱
+          th 顏色
+      tbody
+        - @details.each do |d|
+          tr
+            td = d.DetailName
+            td = SNColor
