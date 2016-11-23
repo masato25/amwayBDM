@@ -36,6 +36,17 @@ class SeriesController < ApplicationController
     redirect_to brand_series_path
   end
 
+  def find_series
+    brand_id = params[:brand_id]
+    @series = Series.where("brand_id = #{brand_id}").select("SeriesName, id")
+    x = []
+    #convert to select options
+    @series.each{|h|
+      x.push({:id => h.id, :text => h.SeriesName})
+    }
+    render :json => x.to_json
+  end
+
   private
 
   def series_params

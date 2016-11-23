@@ -8,9 +8,9 @@ class BrandsController < ApplicationController
         x = []
         #convert to select options
         @brands.each{|h|
-          x.push({:id => h.id, :value => h.BrandName})
+          x.push({:id => h.id, :text => h.BrandName})
         }
-        render :json => x.to_json( :only => [:id, :value] )
+        render :json => x.to_json( :only => [:id, :text] )
       }
     end
   end

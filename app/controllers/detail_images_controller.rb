@@ -8,10 +8,11 @@ class DetailImagesController < ApplicationController
   end
 
   def create
-    @photo = DetailImage.new(photo_params)
+    @photo = DetailImage.new(detail_image_params)
+    @photo.detail_id = params[:detail_id]
     if @photo.save
       flash[:success] = "The photo was added!"
-      redirect_to photos_path
+      redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
     else
       render 'new'
     end
@@ -19,7 +20,7 @@ class DetailImagesController < ApplicationController
 
   private
 
-  def photo_params
-    params.require(:photo).permit(:detail_id, :image)
+  def detail_image_params
+    params.require(:detail_image).permit(:detail_id, :image)
   end
 end

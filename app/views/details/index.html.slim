@@ -8,8 +8,12 @@
         tr
           th 產品名稱
           th 顏色
+          th 修改
+          th 圖片
       tbody
         - @details.each do |d|
           tr
             td = d.DetailName
-            td = SNColor
+            td = d.SNColor
+            td = link_to '修改', edit_detail_path(d)
+            td = link_to '圖片', { :controller => :details, :action => :image_upload, :detail_id => d.id }

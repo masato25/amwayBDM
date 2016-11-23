@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 gem 'paperclip', "~> 4.2"
 
 # style & html
-gem 'vuejs-rails'
 gem "slim-rails"
 gem 'bootstrap-sass'
 

@@ -9,9 +9,10 @@ class CompositionImagesController < ApplicationController
 
   def create
     @photo = CompositionImage.new(photo_params)
+    @photo.detail_id = params[:detail_id]
     if @photo.save
       flash[:success] = "The photo was added!"
-      redirect_to photos_path
+      redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
     else
       render 'new'
     end
@@ -20,6 +21,6 @@ class CompositionImagesController < ApplicationController
   private
 
   def photo_params
-    params.require(:photo).permit(:detail_id, :image)
+    params.require(:composition_images).permit(:detail_id, :image)
   end
 end

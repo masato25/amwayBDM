@@ -18,5 +18,8 @@ Gemfile.lock
 !/log/.keep
 !/tmp/.keep
 
+node_modules
 # Ignore Byebug command history file.
 .byebug_history
+Schema.xml
+yarn.lock
