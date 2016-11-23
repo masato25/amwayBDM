@@ -11,6 +11,9 @@ Gemfile.lock
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
+/db/seeds.rb
+/db/seeds_help
+/public/system
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -23,3 +26,4 @@ node_modules
 .byebug_history
 Schema.xml
 yarn.lock
+form_tmp

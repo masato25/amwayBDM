@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "browserify custom/js/detail.js -o app/assets/javascripts/apps/detail.js",
-    "watch": "watchify custom/js/detail_img.js -o app/assets/javascripts/apps/detail_img.js"
+    "watch": "watchify custom/js/detail_new.js -o app/assets/javascripts/apps/detail_new.js"
   },
   "browserify": {
     "transform": [

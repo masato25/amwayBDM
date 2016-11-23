@@ -1,4 +1,4 @@
 - if flash[:notice]
-  p id="notice" = flash[:notice]
+  div class="alert alert-success" id="notice" = flash[:notice]
 - elsif flash[:error]
-  p id="error" = flash[:error]
+  div class="alert alert-warning" id="error" = flash[:error]

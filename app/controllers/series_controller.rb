@@ -1,5 +1,5 @@
 class SeriesController < ApplicationController
-  before_action :check_brand_existing
+  before_action :check_brand_existing, only: [:index, :edit, :create, :new]
 
   def index
     @series = Series.where("brand_id = #{params[:brand_id]}").order('created_at')

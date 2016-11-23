@@ -5,22 +5,32 @@
   = render 'shared/notice'
   span class="detail_id hidden" id=(@id) = @id
   div class="image_upload"
-    select v-model="selected_type"
-      option v-for="option in image_types" :value="option.value"
-        p() {{ option.text }}
-    p() {{url}}
     form enctype="multipart/form-data" :action="url" accept-charset="UTF-8" method="post"
+      div class="form-group"
+        p 選擇上傳類型
+        select v-model="selected_type" class="form-control"
+          option v-for="option in image_types" :value="option.value"
+            p() {{ option.text }}
       = tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
-      p id="uploadClick" Click to Upload
-      input accept="image/png,image/gif,image/jpeg, image/jpg" id="uploadImage" type="file" :name="fname"
-      input type="submit" name="commit" value="Submit Photo" id="submitPhoto" data-disable-with="Submit Photo"
+      div class="form-group"
+        label class="btn btn-default btn-file"
+          input accept="image/png,image/gif,image/jpeg, image/jpg" id="uploadImage" type="file" :name="fname"
+      div class="form-group"  
+        input class="btn btn-primary" type="submit" name="commit" value="Submit Photo" id="submitPhoto" data-disable-with="Submit Photo"
   div class="row"
-    h3 DetailImage
+    h3 產品照片
     - @dphoto.each do |c|
-      = link_to image_tag(c.image.url, class: 'media-object', :width => 200, :height => 200), c.image.url, target: '_blank'
+      div class="col-sm-6 panel panel-default"
+        = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :detail_images, action: :destroy, id: c.id }, method: :delete, data: { confirm: '確定刪除?' }
+        = link_to image_tag(c.image.url, class: 'media-object'), c.image.url, target: '_blank'
   div class="row"
-    h3 FeatureImage & CompositionImage
     - if @fphoto
-      = link_to image_tag(@fphoto.image.url, class: 'media-object', :width => 200, :height => 200), @fphoto.image.url, target: '_blank'
+      div class="col-sm-6 panel panel-default"
+        h3 功能照片
+        = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :feature_images, action: :destroy, id: @fphoto.id }, method: :delete, data: { confirm: '確定刪除?' }
+        = link_to image_tag(@fphoto.image.url, class: 'media-object'), @fphoto.image.url, target: '_blank'
     - if @cphoto
-      = link_to image_tag(@cphoto.image.url, class: 'media-object', :width => 200, :height => 200), @cphoto.image.url, target: '_blank'
+      div class="col-sm-6 panel panel-default"
+        h3 成份照片
+        = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :composition_images, action: :destroy, id: @cphoto.id }, method: :delete, data: { confirm: '確定刪除?' }
+        = link_to image_tag(@cphoto.image.url, class: 'media-object'), @cphoto.image.url, target: '_blank'

@@ -11,7 +11,7 @@
       div class="form-group"
         = f.label :SeriesId
         p() {{series}}
-        s-select2 name="series_id" :options="series" v-model="selected_series" v-model.lazy="series"
+        s-select2 :options="series" v-model="selected_series" v-model.lazy="selected_series" name="series_id"
           option value="0" disabled="" 請選擇
       div class="form-group"
         = f.label :DetailName

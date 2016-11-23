@@ -1,4 +1,6 @@
 class DetailsController < ApplicationController
+  before_action :check_detail_existing, only: [:edit, :image_upload]
+
   def index
     @details = Detail.joins(:series).where("details.DetailName != \"ddsad\"")
 
@@ -43,5 +45,11 @@ class DetailsController < ApplicationController
 
   def detail_params
     params.require(:detail).permit(:DetailName, :Feature, :HealthyFeature, :HealthyTip, :SNColor)
+  end
+
+  def check_detail_existing
+    if Detail.where("id = #{params[:detail_id]}").size == 0
+      redirect_to root_path
+    end
   end
 end
