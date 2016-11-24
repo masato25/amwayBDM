@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20161120104955) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "brand_id"
-    t.index ["SeriesName"], name: "index_series_on_SeriesName", unique: true
+    t.index ["SeriesName"], name: "index_series_on_SeriesName"
     t.index ["brand_id"], name: "index_series_on_brand_id"
   end
 

@@ -6,6 +6,7 @@
     table class="table"
       thead
         tr
+          th 品牌
           th 系列名稱
           th 系列標題顏色
           th 修改
@@ -13,6 +14,7 @@
       tbody
         - @series.each do |s|
           tr
+            td = s.brand.BrandName
             td = s.SeriesName
             td = s.TitleColor
             td = link_to '修改', controller: "series", action: "edit", id: s.id

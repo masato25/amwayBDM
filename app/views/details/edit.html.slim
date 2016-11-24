@@ -2,17 +2,15 @@
 = render 'shared/layout'
     div class="page-header"
       h3 建立產品頁面
-      = link_to '回首頁', action: "index"
+      = link_to '回上頁', action: "index"
     = render 'shared/notice'
     = form_for @detail do |f|
       div class="form-group" id="detail-form"
         = f.label "BrandName"
-        p() "品牌"
+        div = @brand.BrandName
       div class="form-group"
         = f.label :SeriesId
-        div = @detail.series_id
-        / select2 name="series_id" :options="series" v-model="selected_series" v-model.lazy="series"
-          / option value="0" disabled="" 請選擇
+        div = @seriesName.SeriesName
       div class="form-group"
         = f.label :DetailName
         = f.text_field :DetailName, class: 'form-control'

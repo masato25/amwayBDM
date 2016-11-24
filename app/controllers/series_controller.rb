@@ -2,7 +2,7 @@ class SeriesController < ApplicationController
   before_action :check_brand_existing, only: [:index, :edit, :create, :new]
 
   def index
-    @series = Series.where("brand_id = #{params[:brand_id]}").order('created_at')
+    @series = Series.where("brand_id = #{params[:brand_id]}").includes(:brand).order('created_at')
 
     respond_to do |format|
       format.html
@@ -27,6 +27,21 @@ class SeriesController < ApplicationController
     else
       flash[:error] = @series.errors
       redirect_to new_brand_series_path
+    end
+  end
+
+  def edit
+    @series = Series.find(params[:id])
+  end
+
+  def update
+    series = Series.find(params[:id])
+    if series.update!(series_params)
+      flash[:success] = "更新成功"
+      redirect_to  edit_brand_series_path(params[:brand_id], params[:id])
+    else
+      flash[:success] = "更新失敗, 請檢查輸入選項是否正確"
+      redirect_to edit_brand_series_path(params[:brand_id], params[:id])
     end
   end
 

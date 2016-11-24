@@ -1,0 +1,14 @@
+= render 'shared/layout'
+    div class="page-header"
+      h2 修改系列
+      = link_to '回上頁', action: "index"
+    = render 'shared/notice'
+    = form_for @series, url: {action: "update"} do |f|
+      div class="form-group" 
+        = f.label :SeriesName
+        = f.text_field :SeriesName, class: 'form-control'
+      div class="form-group" 
+        = f.label :TitleColor
+        = f.text_field :TitleColor, class: 'form-control'
+      = f.submit '儲存', class: 'btn btn-primary' 
+    = link_to '回首頁', action: "index"

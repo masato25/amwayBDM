@@ -2,7 +2,7 @@ class DetailsController < ApplicationController
   before_action :check_detail_existing, only: [:edit, :image_upload]
 
   def index
-    @details = Detail.joins(:series)
+    @details = Detail.includes(:series)
 
     respond_to do |format|
       format.html
@@ -31,6 +31,8 @@ class DetailsController < ApplicationController
 
   def edit
     @detail = Detail.find(params[:id])
+    @seriesName = Series.find(@detail["series_id"])
+    @brand = Brand.find(@seriesName["id"])
   end
 
   def image_upload
