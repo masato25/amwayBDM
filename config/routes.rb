@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   end
   get '/series/find/:brand_id' => "series#find_series"
 
+
   resources :details do
+    resources :p_metadata do
+      resources :qr_images, only: [:create, :destroy]
+    end
     resources :detail_images, only: [:new, :create, :index, :destroy]
     resources :composition_images, only: [:new, :create, :index, :destroy]
     resources :feature_images, only: [:new, :create, :index, :destroy]

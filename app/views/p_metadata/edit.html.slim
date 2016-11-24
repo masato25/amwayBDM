@@ -1,0 +1,32 @@
+= javascript_include_tag 'apps/detail_new', 'data-turbolinks-track': 'reload'
+= render 'shared/layout'
+    div class="page-header"
+     h3 建立產品頁面
+     = link_to '回上頁', action: "index"
+    = render 'shared/notice'
+    = form_for @p_metadata, url: detail_p_metadata_path do |f|
+      div class="form-group"
+        = f.label :SN
+        = f.text_field :SN, class: 'form-control'
+      div class="form-group" 
+        = f.label :Volume
+        = f.text_field :Volume, class: 'form-control'
+      div class="form-group" 
+        = f.label :Price
+        = f.text_field :Price, class: 'form-control'
+      div class="form-group" 
+        = f.label :Color
+        = f.text_field :Color, class: 'form-control'
+      = f.submit '儲存', class: 'btn btn-primary' 
+    = form_for @qr_image, url: detail_p_metadatum_qr_images_path(@p_metadata.detail_id, @p_metadata.id) do |p|
+      div class="form-group"
+      = p.label :image
+      = p.file_field :image, class: 'form-control'
+      = p.submit 'Upload', class: 'btn btn-primary'
+    - if @qimage
+      div class="col-sm-6 panel panel-info" style=""
+        div class="panel-heading" 
+          |QR 碼
+        div class="panel-body"
+          = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :qr_images, action: :destroy, id: @qimage.id, p_metadatum_id: @qimage.metadata_id }, method: :delete, data: { confirm: '確定刪除?' }
+          = link_to image_tag(@qimage.image.url, class: 'media-object', size: "200x200"), @qimage.image.url, target: '_blank'

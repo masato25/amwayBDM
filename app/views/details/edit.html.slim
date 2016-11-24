@@ -1,6 +1,8 @@
+= javascript_include_tag 'apps/detail_edit', 'data-turbolinks-track': 'reload'
 = render 'shared/layout'
     div class="page-header"
-      h1 建立產品頁面
+      h3 建立產品頁面
+      = link_to '回首頁', action: "index"
     = render 'shared/notice'
     = form_for @detail do |f|
       div class="form-group" id="detail-form"
@@ -27,4 +29,3 @@
         = f.label :SNColor
         = f.text_field :SNColor, class: 'form-control'
       = f.submit '儲存', class: 'btn btn-primary'
-    = link_to '回首頁', action: "index"

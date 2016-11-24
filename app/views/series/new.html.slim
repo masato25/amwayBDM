@@ -1,6 +1,7 @@
 = render 'shared/layout'
     div class="page-header"
-     h1 建立系列
+     h2 建立系列
+     = link_to '回上頁', action: "index"
     = render 'shared/notice'
     = form_for [@brand, @series], url: {action: "create"} do |f|
       div class="form-group" 

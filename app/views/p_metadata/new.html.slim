@@ -1,0 +1,21 @@
+= javascript_include_tag 'apps/detail_new', 'data-turbolinks-track': 'reload'
+= render 'shared/layout'
+    div class="page-header"
+     h3 建立商品
+     = link_to '回上頁', action: "index"
+    = render 'shared/notice'
+    = form_for @p_metadata, url: detail_p_metadata_path do |f|
+      div class="form-group"
+        = f.label :SN
+        = f.text_field :SN, class: 'form-control'
+      div class="form-group" 
+        = f.label :Volume
+        = f.text_field :Volume, class: 'form-control'
+      div class="form-group" 
+        = f.label :Price
+        = f.text_field :Price, class: 'form-control'
+      div class="form-group" 
+        = f.label :Color
+        = f.text_field :Color, class: 'form-control'
+      = f.submit '儲存', class: 'btn btn-primary' 
+    = link_to '回首頁', action: "index"

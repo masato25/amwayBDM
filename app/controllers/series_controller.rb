@@ -33,7 +33,7 @@ class SeriesController < ApplicationController
   def destroy
     @series = Series.find(params[:id])
     @series.destroy
-    redirect_to brand_series_path
+    redirect_to action: "index"
   end
 
   def find_series
@@ -54,7 +54,8 @@ class SeriesController < ApplicationController
   end
 
   def check_brand_existing
-    if Brand.where("id = #{params[:brand_id]}").size == 0
+    id = params[:brand_id] || params[:od]
+    if Brand.where("id = #{id}").size == 0
       redirect_to root_path
     end
   end

@@ -2,7 +2,7 @@ class DetailsController < ApplicationController
   before_action :check_detail_existing, only: [:edit, :image_upload]
 
   def index
-    @details = Detail.joins(:series).where("details.DetailName != \"ddsad\"")
+    @details = Detail.joins(:series)
 
     respond_to do |format|
       format.html
@@ -48,7 +48,8 @@ class DetailsController < ApplicationController
   end
 
   def check_detail_existing
-    if Detail.where("id = #{params[:detail_id]}").size == 0
+    id = params[:detail_id] || params[:id]
+    if Detail.where("id = #{id}").size == 0
       redirect_to root_path
     end
   end
