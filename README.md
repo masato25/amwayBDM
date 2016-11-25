@@ -1,25 +1,14 @@
-# README
+# AmwayBDM
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# amwayBDM
+```
+gem install bundle
+npm install yarn -g
+```
+```
+cd $project_folder
+bundle
+rake db:migrate
+rails s
+$!! Series is up !!$
+```
+optional: {{if you have scert seeding data , please put it into db folder, then run `rake db:seed`. that will help to check sample demo data}}
