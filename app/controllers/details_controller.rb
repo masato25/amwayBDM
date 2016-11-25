@@ -3,7 +3,6 @@ class DetailsController < ApplicationController
 
   def index
     @details = Detail.includes(:series)
-
     respond_to do |format|
       format.html
       format.json {
@@ -31,8 +30,6 @@ class DetailsController < ApplicationController
 
   def edit
     @detail = Detail.find(params[:id])
-    @seriesName = Series.find(@detail["series_id"])
-    @brand = Brand.find(@seriesName["id"])
   end
 
   def image_upload
@@ -46,7 +43,7 @@ class DetailsController < ApplicationController
   private
 
   def detail_params
-    params.require(:detail).permit(:DetailName, :Feature, :HealthyFeature, :HealthyTip, :SNColor)
+    params.require(:detail).permit(:DetailName, :Feature, :HealthyFeature, :HealthyTip, :SNColor, :brand_name)
   end
 
   def check_detail_existing

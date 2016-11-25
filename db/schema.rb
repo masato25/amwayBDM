@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 20161120104955) do
 
   create_table "p_metadata", force: :cascade do |t|
     t.string   "SN",         null: false
-    t.string   "Volume",     null: false
-    t.integer  "Price",      null: false
+    t.string   "Volume"
+    t.integer  "Price"
     t.string   "Color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

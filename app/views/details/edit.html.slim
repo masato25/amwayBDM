@@ -7,10 +7,10 @@
     = form_for @detail do |f|
       div class="form-group" id="detail-form"
         = f.label "BrandName"
-        div = @brand.BrandName
+        div = @detail.brand_name
       div class="form-group"
         = f.label :SeriesId
-        div = @seriesName.SeriesName
+        div = @detail.series_name
       div class="form-group"
         = f.label :DetailName
         = f.text_field :DetailName, class: 'form-control'

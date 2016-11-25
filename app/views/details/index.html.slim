@@ -3,10 +3,12 @@
     h2 產品列表
     = link_to '建立產品頁面', new_detail_path
     = render 'shared/notice'
-  table class="table"
+  input type="text" id="myInput" onkeyup="myFunction()" placeholder="關鍵字搜尋.." class="form-control"
+  table class="table" id="DetailTable"
     thead
       tr
         th 產品名稱
+        th 品牌
         th 系列
         th 顏色
         th 修改
@@ -16,8 +18,9 @@
       - @details.each do |d|
         tr
           td = d.DetailName
-          td = d.series.SeriesName
+          td = d.brand_name
+          td = d.series_name
           td = d.SNColor
           td = link_to '修改', edit_detail_path(d)
           td = link_to '圖片', { :controller => :details, :action => :image_upload, :detail_id => d.id }
-          td = link_to '商品列表', { :controller => :p_metadata, :action => :index, :detail_id => d.id }
+          td = link_to "商品列表 (#{d.number_pmeta})", { :controller => :p_metadata, :action => :index, :detail_id => d.id }
