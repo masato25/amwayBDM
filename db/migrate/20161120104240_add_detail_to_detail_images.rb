@@ -1,5 +1,5 @@
 class AddDetailToDetailImages < ActiveRecord::Migration[5.0]
   def change
-    add_reference :detail_images, :detail, foreign_key: true
+    add_foreign_key(:detail_images, :detail, dependent: :delete)
   end
 end

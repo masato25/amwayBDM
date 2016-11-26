@@ -5,6 +5,7 @@ class CreatePMetadata < ActiveRecord::Migration[5.0]
       t.string :Volume
       t.integer :Price
       t.string :Color
+      t.integer :detail_id
 
       t.timestamps
     end

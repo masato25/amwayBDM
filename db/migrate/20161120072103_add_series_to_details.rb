@@ -1,5 +1,5 @@
 class AddSeriesToDetails < ActiveRecord::Migration[5.0]
   def change
-    add_reference :details, :series, foreign_key: true
+    add_foreign_key(:details, :series, dependent: :delete)
   end
 end

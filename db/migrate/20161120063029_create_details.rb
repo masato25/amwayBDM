@@ -7,6 +7,7 @@ class CreateDetails < ActiveRecord::Migration[5.0]
       t.text :HealthyFeature
       t.text :HealthyTip
       t.string :SNColor
+      t.integer :series_id
 
       t.timestamps
     end

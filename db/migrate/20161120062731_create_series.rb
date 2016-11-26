@@ -3,7 +3,7 @@ class CreateSeries < ActiveRecord::Migration[5.0]
     create_table :series do |t|
       t.string :SeriesName, null: false
       t.string :TitleColor
-
+      t.integer :brand_id
       t.timestamps
     end
     add_index :series, [:SeriesName]

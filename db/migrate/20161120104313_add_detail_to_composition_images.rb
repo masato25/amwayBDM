@@ -1,5 +1,5 @@
 class AddDetailToCompositionImages < ActiveRecord::Migration[5.0]
   def change
-    add_reference :composition_images, :detail, foreign_key: true
+    add_foreign_key(:composition_images, :detail, dependent: :delete)
   end
 end

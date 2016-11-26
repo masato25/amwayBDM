@@ -1,5 +1,5 @@
 class AddDetailToPMetadata < ActiveRecord::Migration[5.0]
   def change
-    add_reference :p_metadata, :detail, foreign_key: true
+    add_foreign_key(:p_metadata, :details, dependent: :delete)
   end
 end
