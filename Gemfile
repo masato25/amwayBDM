@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+#application server
+gem 'thin'
+
+#Environment Variables management
+gem "figaro"
 
 # image upload
 gem 'paperclip', "~> 4.2"
@@ -7,6 +12,9 @@ gem 'paperclip', "~> 4.2"
 # style & html
 gem "slim-rails"
 gem 'bootstrap-sass'
+
+# extend db models
+gem 'foreigner'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'

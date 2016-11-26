@@ -3,5 +3,5 @@ class QrImage < ApplicationRecord
   validates_attachment_content_type :image,
     :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"],
     size: { in: 03..500.kilobytes }
-  validates_uniqueness_of :metadata_id
+  validates_uniqueness_of :p_metadata_id
 end

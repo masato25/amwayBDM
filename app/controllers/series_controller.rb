@@ -69,7 +69,7 @@ class SeriesController < ApplicationController
   end
 
   def check_brand_existing
-    id = params[:brand_id] || params[:od]
+    id = params[:brand_id] || params[:id]
     if Brand.where("id = #{id}").size == 0
       redirect_to root_path
     end

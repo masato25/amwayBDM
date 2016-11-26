@@ -4,9 +4,9 @@ class Detail < ApplicationRecord
   has_many :detail_image, dependent: :destroy
   has_one :feature_image, dependent: :destroy
   has_one :composition_image, dependent: :destroy
+  has_many :plain_detail, dependent: :destroy
   belongs_to :series, -> { select(:id, :seriesName, :brand_id) }, class_name: 'Series'
   delegate :brands, :to => :series
-
 
   def series_name
     Series.find(self["series_id"])["SeriesName"]

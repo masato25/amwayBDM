@@ -1,0 +1,39 @@
+= javascript_include_tag 'apps/plain_edit', 'data-turbolinks-track': 'reload'
+= render 'shared/layout'
+    div class="page-header"
+      h3 建立展示產品
+      = link_to '回上頁', action: "index"
+    = render 'shared/notice'
+    div class="row col-sm-12"
+      = form_for @pl_detail, url: {controller: "plain_details", action: "create", :plain_id => @plain["id"]} do |f|
+        span class="form-group col-sm-6"
+          = label_tag("產品:")
+          b-select2 :options="details" v-model="selected_detail" v-model.lazy="selected_detail" name="detail_id"
+          span v-if="selected_detail != 0" 
+            span class="label label-warning" {{details[selected_detail].brand_name}} 
+            span class="label label-default" {{details[selected_detail].series_name}}
+        span class="form-group col-sm-3"
+          = label_tag("展示螢幕")
+          = f.select "screen", @number_of_screen, {}, {:class => "form-control"}
+        span class="form-group col-sm-3"
+          = f.submit '儲存', class: 'btn btn-primary'
+    div class="row col-sm-12"
+      -if @pl_details.size != 0
+        div class="col-md-12"
+          span class="col-md-5" 產品名稱
+          span class="col-md-2" 顯示螢幕
+          span class="col-md-2" 刪除
+          span class="col-md-2" 更新
+        - @pl_details.each do |pl|
+          div class="col-md-12"
+            = form_for pl, url: {controller: "plain_details", action: "update", :plain_id => @plain["id"], :pl_detail_id => pl.id} do |f|
+              span class="col-md-5"
+                = pl.detail_name
+                span class="label label-success" = pl.series_name
+                span class="label label-default"   = pl.brand_name
+              span class="col-md-2"
+                = f.select "screen", @number_of_screen, {}, {:class => "form-control"}
+              span class="col-md-2"
+                = link_to '刪除', plain_plain_detail_path(params[:id], pl.id), method: :delete, pl_detail_id: pl.id, data: { confirm: '確定刪除?' }
+              span class="col-md-2"
+                = f.submit '更新', class: 'btn btn-primary'

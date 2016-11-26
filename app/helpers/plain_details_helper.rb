@@ -1,0 +1,2 @@
+module PlainDetailsHelper
+end

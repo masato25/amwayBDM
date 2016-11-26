@@ -1,7 +1,7 @@
 = render 'shared/layout'
   div class="page-header"
     h2 商品列表
-    = link_to '新增商品', new_detail_p_metadatum_url
+    = link_to '新增商品', new_detail_p_metadata_url
     = render 'shared/notice'
   table class="table"
     thead
@@ -11,6 +11,7 @@
         th 價格
         th 顏色
         th 修改
+        th 刪除
     tbody
       - @p_metadata.each do |d|
         tr
@@ -18,5 +19,5 @@
           td = d.Volume
           td = d.Price
           td = d.Color
-          td = link_to '修改', edit_detail_p_metadatum_path(d.detail_id,d.id)
-          / td = link_to '圖片', { :controller => :details, :action => :image_upload, :detail_id => d.id }
+          td = link_to '修改', edit_detail_p_metadata_path(d.detail_id,d.id)
+          td = link_to '刪除', detail_p_metadata_path(d.detail_id,d.id), method: :delete, data: { confirm: '確定刪除?' }

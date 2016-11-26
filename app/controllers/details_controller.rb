@@ -11,6 +11,19 @@ class DetailsController < ApplicationController
     end
   end
 
+  def detail_info_list
+    @details = Detail.all
+    @respDet = []
+    @details.each{|d|
+      @respDet = @respDet.push({ id: d["id"],
+        text: d["DetailName"],
+        series_name: d.series_name,
+        brand_name: d.brand_name
+      })
+    }
+    render json: @respDet.to_json
+  end
+
   def new
     @detail = Detail.new
   end

@@ -1,0 +1,17 @@
+= render 'shared/layout'
+  div class="page-header"
+    h2 展示樣板設置
+    = link_to '建立樣板', new_plain_path
+    = render 'shared/notice'
+    table class="table"
+      thead
+        tr
+          th 名稱
+          th 修改
+          th 刪除
+      tbody
+        - @plains.each do |plain|
+          tr
+            td = plain["name"]
+            td = link_to '修改', edit_plain_path(plain)
+            td = link_to '刪除', plain, method: :delete, data: { confirm: '確定刪除?' }

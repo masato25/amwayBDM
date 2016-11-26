@@ -5,13 +5,13 @@ class QrImagesController < ApplicationController
 
   def create
     @photo = QrImage.new(detail_image_params)
-    @photo.metadata_id = params[:p_metadatum_id]
+    @photo.p_metadata_id = params[:p_metadata_id]
     if @photo.save
       flash[:success] = "照片上傳成功"
-      redirect_to  edit_detail_p_metadatum_path(params[:detail_id], params[:p_metadatum_id])
+      redirect_to  edit_detail_p_metadata_path(params[:detail_id], params[:p_metadata_id])
     else
       flash[:error] = @photo.errors
-      redirect_to  edit_detail_p_metadatum_path(params[:detail_id], params[:p_metadatum_id])
+      redirect_to  edit_detail_p_metadata_path(params[:detail_id], params[:p_metadata_id])
     end
   end
 
@@ -19,16 +19,16 @@ class QrImagesController < ApplicationController
     @photo = QrImage.find(params[:id])
     if @photo.destroy
       flash[:success] = "照片刪除成功"
-      redirect_to  edit_detail_p_metadatum_path(params[:detail_id], params[:p_metadatum_id])
+      redirect_to  edit_detail_p_metadata_path(params[:detail_id], params[:p_metadata_id])
     else
       flash[:error] = @photo.error
-      redirect_to  edit_detail_p_metadatum_path(params[:detail_id], params[:p_metadatum_id])
+      redirect_to  edit_detail_p_metadata_path(params[:detail_id], params[:p_metadata_id])
     end
   end
 
   private
 
   def detail_image_params
-    params.require(:qr_image).permit(:metadata_id, :image)
+    params.require(:qr_image).permit(:p_metadata_id, :image)
   end
 end
