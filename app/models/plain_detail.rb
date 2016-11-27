@@ -2,7 +2,7 @@ class PlainDetail < ApplicationRecord
   belongs_to :plain
   belongs_to :detail
   validates_uniqueness_of :plain_id, :scope => [:detail_id, :plain_id]
-
+  attr_accessor :ScreenIndex, :TouchRect
   def detail_name
     Detail.find(self["detail_id"])["DetailName"]
   end

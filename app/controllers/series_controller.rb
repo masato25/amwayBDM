@@ -1,4 +1,5 @@
 class SeriesController < ApplicationController
+  before_action :check_session
   before_action :check_brand_existing, only: [:index, :edit, :create, :new]
 
   def index

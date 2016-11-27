@@ -1,4 +1,5 @@
 class FeatureImagesController < ApplicationController
+  before_action :check_session
   def index
     @photos = FeatureImage.order('created_at')
   end

@@ -1,6 +1,7 @@
 require 'ostruct'
 
 class MachinesController < ApplicationController
+  before_action :check_session
   def index
     @machines = Machine.order(:id)
     @plains = Plain.select("id, name").map{|p| [p.name, p.id]}
@@ -61,10 +62,11 @@ class MachinesController < ApplicationController
                 details = detailMap[series_id]
                 details.each{|d|
                   xml.Detail do
+                    xml.DetailID d["id"]
                     xml.IsShow d["IsShow"]
                     plain_detail = findPlainByDetailPlainIds(d["id"], palin_id)
-                    xml.ScreenIndex plain_detail["screen"]
-                    xml.TouchRect plain_detail["touch"]
+                    xml.ScreenIndex plain_detail["ScreenIndex"]
+                    xml.TouchRect plain_detail["TouchRect"]
                     xml.DetailName d["DetailName"]
                     xml.Feature d["Feature"]
                     xml.DetailImagePaths do

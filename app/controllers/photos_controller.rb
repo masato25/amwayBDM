@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  before_action :check_session
   def index
     @photos = Photo.order('created_at')
   end

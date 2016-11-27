@@ -1,4 +1,5 @@
 class CompositionImagesController < ApplicationController
+  before_action :check_session
   def index
     @photos = CompositionImage.order('created_at')
   end

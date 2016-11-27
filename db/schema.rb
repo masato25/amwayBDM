@@ -90,12 +90,12 @@ ActiveRecord::Schema.define(version: 20161126131059) do
   end
 
   create_table "plain_details", force: :cascade do |t|
-    t.integer  "screen",     null: false
-    t.string   "coordinate"
+    t.integer  "ScreenIndex", default: 1,               null: false
+    t.string   "TouchRect",   default: "rect(0,0,0,0)", null: false
     t.integer  "detail_id"
     t.integer  "plain_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.index ["plain_id", "detail_id"], name: "index_plain_details_on_plain_id_and_detail_id", unique: true
   end
 

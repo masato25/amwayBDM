@@ -1,4 +1,5 @@
 class QrImagesController < ApplicationController
+  before_action :check_session
   def new
     @photo = QrImage.new
   end

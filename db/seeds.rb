@@ -13,6 +13,7 @@ puts "sheet_childs"
 sheet_childs()
 
 20.times do |l|
+  next if l == 0
   a = Machine.new({
     name: "m#{l}",
   })

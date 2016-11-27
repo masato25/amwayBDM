@@ -1,4 +1,5 @@
 class DetailsController < ApplicationController
+  before_action :check_session
   before_action :check_detail_existing, only: [:edit, :image_upload]
 
   def index
@@ -66,7 +67,7 @@ class DetailsController < ApplicationController
   private
 
   def detail_params
-    params.require(:detail).permit(:DetailName, :Feature, :HealthyFeature, :HealthyTip, :SNColor, :brand_name)
+    params.require(:detail).permit(:DetailName, :Feature, :HealthyFeature, :HealthyTip, :SNColor, :brand_name, :IsShow)
   end
 
   def check_detail_existing

@@ -1,4 +1,5 @@
 class DetailImagesController < ApplicationController
+  before_action :check_session
   def index
     @photos = DetailImage.order('created_at')
   end

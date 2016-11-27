@@ -4,26 +4,30 @@
       h3 建立產品頁面
       = link_to '回上頁', action: "index"
     = render 'shared/notice'
-    = form_for @detail do |f|
-      div class="form-group" id="detail-form"
-        = f.label "BrandName"
-        div = @detail.brand_name
-      div class="form-group"
-        = f.label :SeriesId
-        div = @detail.series_name
-      div class="form-group"
-        = f.label :DetailName
-        = f.text_field :DetailName, class: 'form-control'
-      div class="form-group"
-        = f.label :Feature
-        = f.text_field :Feature, class: 'form-control'
-      div class="form-group"
-        = f.label :HealthyFeature
-        = f.text_field :HealthyFeature, class: 'form-control'
-      div class="form-group"
-        = f.label :HealthyTip
-        = f.text_field :HealthyTip, class: 'form-control'
-      div class="form-group"
-        = f.label :SNColor
-        = f.text_field :SNColor, class: 'form-control'
-      = f.submit '儲存', class: 'btn btn-primary'
+    div class="row" style="padding-bottom: 50px;"
+      = form_for @detail do |f|
+        div class="form-group" id="detail-form"
+          = f.label "BrandName"
+          div = @detail.brand_name
+        div class="form-group"
+          = f.label :SeriesId
+          div = @detail.series_name
+        div class="form-group"
+          = f.label :DetailName
+          = f.text_field :DetailName, class: 'form-control'
+        div class="form-group"
+          = f.label :Feature
+          = f.text_field :Feature, class: 'form-control'
+        div class="form-group"
+          = f.label :HealthyFeature
+          = f.text_field :HealthyFeature, class: 'form-control'
+        div class="form-group"
+          = f.label :HealthyTip
+          = f.text_field :HealthyTip, class: 'form-control'
+        div class="form-group"
+          = f.label :SNColor
+          = f.text_field :SNColor, class: 'form-control'
+        div class="form-group"
+          = f.label :IsShow
+          = f.select :IsShow, options_for_select([['顯示', true], ['隱藏', false]], @detail["IsShow"]), {}, :class => 'form-control'
+        = f.submit '儲存', class: 'btn btn-primary'

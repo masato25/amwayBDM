@@ -1,8 +1,8 @@
 class CreatePlainDetails < ActiveRecord::Migration[5.0]
   def change
     create_table :plain_details do |t|
-      t.integer :screen, null: false
-      t.string :coordinate
+      t.integer :ScreenIndex, null: false, default: 1
+      t.string :TouchRect, null: false, default: "rect(0,0,0,0)"
       t.integer :detail_id
       t.integer :plain_id
 

@@ -14,26 +14,37 @@
             span class="label label-default" {{details[selected_detail].series_name}}
         span class="form-group col-sm-3"
           = label_tag("展示螢幕")
-          = f.select "screen", @number_of_screen, {}, {:class => "form-control"}
+          = f.select "ScreenIndex", @number_of_screen, {}, {:class => "form-control"}
         span class="form-group col-sm-3"
-          = f.submit '儲存', class: 'btn btn-primary'
-    div class="row col-sm-12"
+          div style="padding-top: 23px"
+            = f.submit '儲存', class: 'btn btn-primary'
+    div class="row col-sm-12" style="border-style: double;padding-top: 10px; padding-bottom: 20px;"
       -if @pl_details.size != 0
+        div
+          = "[ 共 #{@pl_details.size} 項 ]" 
         div class="col-md-12"
-          span class="col-md-5" 產品名稱
-          span class="col-md-2" 顯示螢幕
-          span class="col-md-2" 刪除
-          span class="col-md-2" 更新
+          span class="col-md-4" 
+            strong 產品名稱
+          span class="col-md-2" 
+            strong 顯示位置
+          span class="col-md-2" 
+            strong 顯示螢幕
+          span class="col-md-2" 
+            strong 更新
+          span class="col-md-2" 
+            strong 刪除
         - @pl_details.each do |pl|
-          div class="col-md-12"
+          div class="col-md-12" style="padding-top:10px; padding-bottom:10px"
             = form_for pl, url: {controller: "plain_details", action: "update", :plain_id => @plain["id"], :pl_detail_id => pl.id} do |f|
-              span class="col-md-5"
+              span class="col-md-4"
                 = pl.detail_name
                 span class="label label-success" = pl.series_name
                 span class="label label-default"   = pl.brand_name
               span class="col-md-2"
-                = f.select "screen", @number_of_screen, {}, {:class => "form-control"}
+                = pl.TouchRect
               span class="col-md-2"
-                = link_to '刪除', plain_plain_detail_path(params[:id], pl.id), method: :delete, pl_detail_id: pl.id, data: { confirm: '確定刪除?' }
+                = f.select "ScreenIndex", @number_of_screen, {}, {:class => "form-control"}
               span class="col-md-2"
                 = f.submit '更新', class: 'btn btn-primary'
+              span class="col-md-2"
+                = link_to '<button type="button" class="btn btn-default">刪除</button>'.html_safe, plain_plain_detail_path(params[:id], pl.id), method: :delete, pl_detail_id: pl.id, data: { confirm: '確定刪除?' }

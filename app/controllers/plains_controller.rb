@@ -1,5 +1,7 @@
 class PlainsController < ApplicationController
+  before_action :check_session
   before_action :check_plain_existing, only: [:edit]
+
   def index
     @plains = Plain.order('created_at')
   end

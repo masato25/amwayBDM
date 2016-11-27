@@ -1,0 +1,7 @@
+= render 'shared/layout'
+  h2 登入頁面
+  = render 'shared/notice'
+  = form_tag "/login", method: "post" do 
+    = label_tag :password, "登入密碼"
+    = password_field_tag(:password)
+    = submit_tag("登入")

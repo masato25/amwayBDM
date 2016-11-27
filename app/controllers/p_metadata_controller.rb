@@ -1,5 +1,5 @@
 class PMetadataController < ApplicationController
-
+  before_action :check_session
   def index
     detail_id = params[:detail_id]
     @p_metadata = PMetadata.where("detail_id = #{detail_id}")
