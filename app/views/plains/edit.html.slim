@@ -41,9 +41,9 @@
                 span class="label label-success" = pl.series_name
                 span class="label label-default"   = pl.brand_name
               span class="col-md-2"
-                = pl.TouchRect
+                = pl["TouchRect"]
               span class="col-md-2"
-                = f.select "ScreenIndex", @number_of_screen, {}, {:class => "form-control"}
+                = f.select :ScreenIndex, options_for_select(@number_of_screen, pl["ScreenIndex"]), {}, {:class => "form-control"}
               span class="col-md-2"
                 = f.submit '更新', class: 'btn btn-primary'
               span class="col-md-2"

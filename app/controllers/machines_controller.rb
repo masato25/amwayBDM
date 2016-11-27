@@ -65,6 +65,7 @@ class MachinesController < ApplicationController
                     xml.DetailID d["id"]
                     xml.IsShow d["IsShow"]
                     plain_detail = findPlainByDetailPlainIds(d["id"], palin_id)
+                    xml.IdentityId plain_detail["id"]
                     xml.ScreenIndex plain_detail["ScreenIndex"]
                     xml.TouchRect plain_detail["TouchRect"]
                     xml.DetailName d["DetailName"]

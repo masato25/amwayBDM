@@ -1,6 +1,6 @@
 class PlainDetailsController < ApplicationController
-  before_action :check_session
-  skip_before_filter :verify_authenticity_token, :only => [:update_deatils]
+  before_action :check_session, :except => [:update_deatils]
+  skip_before_action :verify_authenticity_token, :only => [:update_deatils]
 
   def create
     @pl_detail = PlainDetail.new(plain_detail_params)
@@ -43,21 +43,19 @@ class PlainDetailsController < ApplicationController
       err_row = 0
       errors = []
       params["details"].each{|d|
-        if d.has_key?("detail_id")
-          pl_detail = PlainDetail.where("plain_id = #{params["id"]} and detail_id = #{d["detail_id"]}")
-          mparams = ActionController::Parameters.new({
-                    plain_detail: {
-                      detail_id: d["id"],
-                      ScreenIndex:  d["ScreenIndex"],
-                      TouchRect: d["TouchRect"]
-                    }
-                  })
-          if pl_detail.size != 0 && pl_detail.first.update!(mparams.require(:plain_detail).permit(:plain_id, :detail_id, :ScreenIndex, :TouchRect))
+        if d.has_key?("identity_id")
+          pl_detail = PlainDetail.find(d["identity_id"])
+          if pl_detail
+            pl_detail.update(
+              ScreenIndex: d["ScreenIndex"] || pl_detail["ScreenIndex"],
+              TouchRect: d["TouchRect"] || pl_detail["TouchRect"]
+            )
             row_affect += 1
-          elsif pl_detail.size == 0
-            errors = errors.push("not found matched detail of this plain -> #{d["detail_id"]}")
+            if pl_detail.errors
+              errors = pl_detail.errors
+            end
           else
-            errors = errors.push(pl_detail.errors)
+            errors = errors.push("not found matched detail of this plain -> #{d["identity_id"]}")
             err_row += 1
           end
         else
@@ -71,7 +69,7 @@ class PlainDetailsController < ApplicationController
     end
     render json: respon
   end
-
+  
   private
 
   def plain_detail_params
