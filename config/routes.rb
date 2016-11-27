@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-  resources :machines, only: [:index, :update]
-
-  # get 'plain_details/create'
-
-  # get 'plain_details/destory'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root :to => "brands#index"
   resources :photos, only: [:new, :create, :index, :destroy]
@@ -31,4 +24,10 @@ Rails.application.routes.draw do
   get '/details_listall' => 'details#detail_info_list'
   get '/details/:detail_id/image_upload' => 'details#image_upload'
 
+  resources :machines, only: [:index, :update] do
+    member do
+      get 'sync' => "machines#sync_plain_to_machine"
+    end
+  end
+  # get '/testxml' => 'machines#sync_plain_to_machine'
 end

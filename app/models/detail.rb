@@ -17,6 +17,22 @@ class Detail < ApplicationRecord
     Brand.find(series["brand_id"])["BrandName"]
   end
 
+  def detail_images
+    DetailImage.where("detail_id = #{self[:id]}").map{|i| i.image.url }
+  end
+
+  def feature_images
+    FeatureImage.where("detail_id = #{self[:id]}").map{|i| i.image.url }.first
+  end
+
+  def composition_images
+    CompositionImage.where("detail_id = #{self[:id]}").map{|i| i.image.url }.first
+  end
+
+  def p_metadata
+    PMetadata.where("detail_id = #{self[:id]}")
+  end
+
   def number_pmeta
     PMetadata.where("detail_id = #{self["id"]}").size
   end
