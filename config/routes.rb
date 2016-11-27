@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  root :to => "brands#index"
+  root :to => "brands#login"
+  get "/login" => "brands#login"
+  post "/login" => "brands#logon"
+  get "/logout" => "brands#logout"
+
   resources :photos, only: [:new, :create, :index, :destroy]
   resources :brands do
     resources :series
@@ -19,6 +23,10 @@ Rails.application.routes.draw do
 
   resources :plains, only: [:new, :create, :index, :destroy, :edit] do
     resources :plain_details, only: [:create, :update, :destroy]
+    member do
+      get 'update' => "plain_details#update_deatils"
+      post 'update' => "plain_details#update_deatils"
+    end
   end
 
   get '/details_listall' => 'details#detail_info_list'
