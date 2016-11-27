@@ -33,7 +33,7 @@ class DetailsController < ApplicationController
     @detail.series_id = params["series_id"]
     if @detail.valid?
       @detail.save
-      flash[:success] = "品牌新增成功"
+      flash[:notice] = "品牌新增成功"
       redirect_to action: "index"
     else
       flash[:error] = @detail.errors
@@ -43,6 +43,16 @@ class DetailsController < ApplicationController
 
   def edit
     @detail = Detail.find(params[:id])
+  end
+
+  def update
+    @detail = Detail.find(params[:id])
+    if @detail.update(detail_params)
+      flash[:notice] = "更新成功"
+    else
+      flash[:error] = @detail.errors
+    end
+    redirect_to action: "edit"
   end
 
   def image_upload

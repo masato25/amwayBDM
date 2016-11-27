@@ -7,13 +7,13 @@
       thead
         tr
           th 品牌名稱
-          th 修改
+          / th 修改
           th 刪除
           th 系列
       tbody
         - @brands.each do |brand|
           tr
             td = brand.BrandName
-            td = link_to '修改', edit_brand_path(brand)
+            / td = link_to '修改', edit_brand_path(brand)
             td = link_to '刪除', brand, method: :delete, data: { confirm: '確定刪除?' }
             td = link_to '編輯系列', controller: "series", action: "index", brand_id: brand.id

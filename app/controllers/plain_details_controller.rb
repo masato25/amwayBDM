@@ -4,7 +4,7 @@ class PlainDetailsController < ApplicationController
     @pl_detail.plain_id = params[:plain_id]
     @pl_detail.detail_id = params[:detail_id]
     if @pl_detail.save
-      flash[:success] = "新增成功"
+      flash[:notice] = "新增成功"
     else
       flash[:error] = @pl_detail.errors
     end
@@ -14,7 +14,7 @@ class PlainDetailsController < ApplicationController
   def update
     @pl_detail = PlainDetail.find(params[:pl_detail_id])
     if @pl_detail.update(plain_detail_params)
-      flash[:success] = "更新成功"
+      flash[:notice] = "更新成功"
     else
       flash[:error] = @pl_detail.errors
     end
@@ -24,7 +24,7 @@ class PlainDetailsController < ApplicationController
   def destroy
     @plain = PlainDetail.find(params[:id])
     if @plain.destroy
-      flash[:success] = "刪除成功"
+      flash[:notice] = "刪除成功"
     else
       flash[:error] = @plain.errors
     end

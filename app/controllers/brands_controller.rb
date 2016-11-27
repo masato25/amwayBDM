@@ -23,7 +23,7 @@ class BrandsController < ApplicationController
     @brand = Brand.new(brand_params)
     if @brand.valid?
       @brand.save
-      flash[:success] = "品牌新增成功"
+      flash[:notice] = "品牌新增成功"
       redirect_to action: "index"
     else
       flash[:error] = @brand.errors

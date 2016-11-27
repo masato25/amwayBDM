@@ -11,7 +11,7 @@ class DetailImagesController < ApplicationController
     @photo = DetailImage.new(detail_image_params)
     @photo.detail_id = params[:detail_id]
     if @photo.save
-      flash[:success] = "照片上傳成功"
+      flash[:notice] = "照片上傳成功"
       redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
     else
       flash[:error] = @photo.errors
@@ -22,7 +22,7 @@ class DetailImagesController < ApplicationController
   def destroy
     @photo = DetailImage.find(params[:id])
     if @photo.destroy
-      flash[:success] = "照片刪除成功"
+      flash[:notice] = "照片刪除成功"
       redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
     else
       flash[:error] = @photo.error

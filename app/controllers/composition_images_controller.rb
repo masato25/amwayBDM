@@ -11,7 +11,7 @@ class CompositionImagesController < ApplicationController
     @photo = CompositionImage.new(photo_params)
     @photo.detail_id = params[:detail_id]
     if @photo.save
-      flash[:success] = "照片上傳成功"
+      flash[:notice] = "照片上傳成功"
       redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
     else
       flash[:error] = "成份照片只能允許上傳一張"
@@ -22,7 +22,7 @@ class CompositionImagesController < ApplicationController
   def destroy
     @photo = CompositionImage.find(params[:id])
     if @photo.destroy
-      flash[:success] = "照片刪除成功"
+      flash[:notice] = "照片刪除成功"
       redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
     else
       flash[:error] = @photo.error

@@ -14,7 +14,7 @@ class PMetadataController < ApplicationController
     @p_metadata.detail_id = params[:detail_id]
     if @p_metadata.valid?
       @p_metadata.save
-      flash[:success] = "新增成功"
+      flash[:notice] = "新增成功"
       redirect_to action: "index"
     else
       flash[:error] = @p_metadata.errors
@@ -25,7 +25,7 @@ class PMetadataController < ApplicationController
   def destroy
     @p_metadata = PMetadata.find(params[:id])
     if @p_metadata.destroy
-      flash[:success] = "刪除成功"
+      flash[:notice] = "刪除成功"
     else
       flash[:error] = @p_metadata.errors
     end
@@ -36,6 +36,16 @@ class PMetadataController < ApplicationController
     @p_metadata = PMetadata.find(params[:id])
     @qimage = QrImage.where("p_metadata_id = #{params[:id]}").first
     p @qimage.methods
+  end
+
+  def update
+    @p_metadata = PMetadata.find(params[:id])
+    if @p_metadata.update(meta_params)
+      flash[:notice] = "更新成功"
+    else
+      flash[:error] = @p_metadata.errors
+    end
+    redirect_to action: "edit"
   end
 
   private

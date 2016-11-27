@@ -32,9 +32,11 @@ class PlainsController < ApplicationController
   end
 
 
-  def destory
+  def destroy
     @plain = Plain.find(params[:id])
-    @plain.destory
+    if @plain.destroy
+      Machine.where("plain_id = #{params[:id]}").update_all("plain_id = 0")
+    end
     redirect_to action: "index"
   end
 

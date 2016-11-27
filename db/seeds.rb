@@ -11,3 +11,14 @@ puts "sheet_2"
 sheet_2()
 puts "sheet_childs"
 sheet_childs()
+
+20.times do |l|
+  a = Machine.new({
+    name: "m#{l}",
+  })
+  if a.save
+
+  else
+    p a.errors
+  end
+end

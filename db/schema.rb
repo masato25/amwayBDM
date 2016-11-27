@@ -63,10 +63,9 @@ ActiveRecord::Schema.define(version: 20161126131059) do
 
   create_table "machines", force: :cascade do |t|
     t.string   "name"
-    t.integer  "plain_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["plain_id"], name: "index_machines_on_plain_id"
+    t.integer  "plain_id",   default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "p_metadata", force: :cascade do |t|
