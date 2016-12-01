@@ -1,0 +1,12 @@
+= render 'shared/layout'
+  div class="page-header"
+    h2 匯入
+    = render 'shared/notice'
+    = simple_form_for @backups, url: backups_path do |form|
+      = form.input :avatar, as: :file
+      = form.submit '上傳', class: 'btn btn-primary'
+  div
+    - @files.each do |f|
+      div
+        = f.avatar_file_name + "/" + f.avatar_updated_at.strftime("%Y-%m-%d %H:%M:%S")
+      

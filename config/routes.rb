@@ -38,4 +38,8 @@ Rails.application.routes.draw do
     end
   end
   # get '/testxml' => 'machines#sync_plain_to_machine'
+
+  resources :backups, only: [:index, :create]
+  post '/backups/generate' => "backups#generate"
+  get '/backups/genpage' => "backups#genpage"
 end
