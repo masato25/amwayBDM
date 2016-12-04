@@ -1,8 +1,11 @@
 require 'rake'
 
 class BackupsController < ApplicationController
+  before_action :check_session
+
   Rake::Task.define_task(:environment)
   def index
+    check_mysession
     @backups = Backup.new()
     @files = Backup.all()
   end
@@ -39,6 +42,7 @@ class BackupsController < ApplicationController
   end
 
   def genpage
+    check_mysession
     @data_export = {"name": "backups.tar.gz", "path": "public/backups.tar.gz"}
     if File.exist?(@data_export[:path])
       @data_export[:update_time] = File.stat("public/backups.tar.gz").mtime.strftime("%Y-%m-%d %H:%M:%S")

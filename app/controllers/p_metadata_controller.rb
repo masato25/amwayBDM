@@ -1,6 +1,7 @@
 class PMetadataController < ApplicationController
   before_action :check_session
   def index
+    check_mysession
     detail_id = params[:detail_id]
     @p_metadata = PMetadata.where("detail_id = #{detail_id}")
   end
@@ -32,6 +33,7 @@ class PMetadataController < ApplicationController
     redirect_to action: "index"
   end
   def edit
+    check_mysession
     @qr_image = QrImage.new
     @p_metadata = PMetadata.find(params[:id])
     @qimage = QrImage.where("p_metadata_id = #{params[:id]}").first

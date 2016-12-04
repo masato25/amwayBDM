@@ -3,6 +3,7 @@ class DetailsController < ApplicationController
   before_action :check_detail_existing, only: [:edit, :image_upload]
 
   def index
+    check_mysession
     @details = Detail.includes(:series)
     respond_to do |format|
       format.html
@@ -43,6 +44,7 @@ class DetailsController < ApplicationController
   end
 
   def edit
+    check_mysession
     @detail = Detail.find(params[:id])
   end
 
@@ -57,6 +59,7 @@ class DetailsController < ApplicationController
   end
 
   def image_upload
+    check_mysession
     @id = params[:detail_id]
     @photo = DetailImage.new()
     @dphoto = DetailImage.where("detail_id = #{params[:detail_id]}")

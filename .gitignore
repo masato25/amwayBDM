@@ -13,6 +13,7 @@ Gemfile.lock
 /db/*.sqlite3-journal
 /db/seeds.rb
 /db/seeds_help
+/db/schema.rb
 /public/system
 /public/*.tar.gz
 /public/*.sql

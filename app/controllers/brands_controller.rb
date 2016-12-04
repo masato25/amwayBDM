@@ -2,6 +2,7 @@ class BrandsController < ApplicationController
   before_action :check_session
 
   def index
+    check_mysession
     @brands = Brand.order('created_at')
 
     respond_to do |format|
@@ -18,6 +19,7 @@ class BrandsController < ApplicationController
   end
 
   def new
+    check_mysession
     @brand = Brand.new
   end
 
@@ -65,4 +67,5 @@ class BrandsController < ApplicationController
    def brand_params
       params.require(:brand).permit(:BrandName)
    end
+   
 end

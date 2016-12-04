@@ -3,10 +3,12 @@ class PlainsController < ApplicationController
   before_action :check_plain_existing, only: [:edit]
 
   def index
+    check_mysession
     @plains = Plain.order('created_at')
   end
 
   def new
+    check_mysession
     @plain = Plain.new()
   end
 
@@ -23,6 +25,7 @@ class PlainsController < ApplicationController
   end
 
   def edit
+    check_mysession
     @plain = Plain.find(params[:id])
     @pl_detail = PlainDetail.new()
     default_nscreen = 3
