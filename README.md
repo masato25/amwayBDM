@@ -14,10 +14,10 @@ $!! Series is up !!$
 optional: {{if you have scert seeding data , please put it into db folder, then run `rake db:seed`. that will help to create sample demo data}}
 
 ## API refer
-* Get sync data for one machine `${url}/machines/${machine_id}/sync`
+* Get sync data for one machine [GET] `${url}/machines/${machine_id}/sync`
   * ex. /machines/3/sync
 
-* Update touch & screen to detail on plain `${url}/plains/${plain_id}/update`
+* Update touch & screen to detail on plain [POST] `${url}/plains/${plain_id}/update`
   * ex. plains/1/update
   ```
   {
@@ -27,3 +27,6 @@ optional: {{if you have scert seeding data , please put it into db folder, then 
     ]
   }
   ```
+
+Video upload support
+  * mp4,avi,mov
