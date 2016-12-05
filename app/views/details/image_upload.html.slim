@@ -1,7 +1,7 @@
 = javascript_include_tag 'apps/detail_img', 'data-turbolinks-track': 'reload'
 = render 'shared/layout'
   div class="page-header"
-   h3 上传产品照片
+   h3 = "上传产品照片 [ #{@detail["DetailName"]} ]"
   = render 'shared/notice'
   span class="detail_id hidden" id=(@id) = @id
   div class="image_upload"

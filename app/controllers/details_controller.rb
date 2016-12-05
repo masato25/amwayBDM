@@ -61,6 +61,7 @@ class DetailsController < ApplicationController
   def image_upload
     check_mysession
     @id = params[:detail_id]
+    @detail = Detail.find(@id)
     @photo = DetailImage.new()
     @dphoto = DetailImage.where("detail_id = #{params[:detail_id]}")
     @fphoto = FeatureImage.where("detail_id = #{params[:detail_id]}").first
