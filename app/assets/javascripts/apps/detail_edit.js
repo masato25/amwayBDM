@@ -4,15 +4,6 @@ var Vue = require('vue/dist/vue');
 var select2 = require('select2/dist/js/select2.full');
 var _ = require('lodash');
 
-$(document).ready(function () {
-  var vm = new Vue({
-    el: ".container",
-    data: {
-      "msg": "123"
-    }
-  });
-});
-
 },{"jquery":2,"lodash":3,"select2/dist/js/select2.full":4,"vue/dist/vue":5}],2:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.1.1

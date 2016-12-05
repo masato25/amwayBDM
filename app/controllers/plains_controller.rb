@@ -16,7 +16,7 @@ class PlainsController < ApplicationController
     @plain = Plain.new(plain_params)
     if @plain.valid?
       @plain.save
-      flash[:success] = "樣板新增成功"
+      flash[:success] = "新增成功"
       redirect_to action: "index"
     else
       flash[:error] = @plain.errors

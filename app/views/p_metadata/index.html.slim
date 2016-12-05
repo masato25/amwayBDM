@@ -6,12 +6,12 @@
   table class="table"
     thead
       tr
-        th 商品編號
-        th 規格
-        th 價格
-        th 顏色
+        th 商品编号
+        th 规格
+        th 价格
+        th 颜色
         th 修改
-        th 刪除
+        th 删除
     tbody
       - @p_metadata.each do |d|
         tr
@@ -20,4 +20,4 @@
           td = d.Price
           td = d.Color
           td = link_to '修改', edit_detail_p_metadata_path(d.detail_id,d.id)
-          td = link_to '刪除', detail_p_metadata_path(d.detail_id,d.id), method: :delete, data: { confirm: '確定刪除?' }
+          td = link_to '删除', detail_p_metadata_path(d.detail_id,d.id), method: :delete, data: { confirm: '确定删除?' }

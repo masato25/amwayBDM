@@ -1,18 +1,18 @@
 = render 'shared/layout'
   div class="page-header"
-    h2 產品列表
-    = link_to '建立產品頁面', new_detail_path
+    h2 产品列表
+    = link_to '建立产品页面', new_detail_path
     = render 'shared/notice'
-  input type="text" id="myInput" onkeyup="myFunction()" placeholder="關鍵字搜尋.." class="form-control"
+  input type="text" id="myInput" onkeyup="myFunction()" placeholder="关键字搜寻.." class="form-control"
   table class="table" id="DetailTable"
     thead
       tr
-        th 產品名稱
+        th 产品名称
         th 品牌
         th 系列
-        th 顏色
+        th 颜色
         th 修改
-        th 圖片
+        th 图片
         th 商品列表
     tbody
       - @details.each do |d|
@@ -22,5 +22,5 @@
           td = d.series_name
           td = d.SNColor
           td = link_to '修改', edit_detail_path(d)
-          td = link_to '圖片', { :controller => :details, :action => :image_upload, :detail_id => d.id }
+          td = link_to '图片', { :controller => :details, :action => :image_upload, :detail_id => d.id }
           td = link_to "商品列表 (#{d.number_pmeta})", { :controller => :p_metadata, :action => :index, :detail_id => d.id }

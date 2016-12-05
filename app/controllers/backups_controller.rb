@@ -20,7 +20,7 @@ class BackupsController < ApplicationController
           system("rm -f public/backups")
         end
       end
-      flash[:notice] = "匯入成功"
+      flash[:notice] = "汇入成功"
       redirect_to action: "index"
     else
       flash[:error] = @backups.errors
@@ -33,10 +33,10 @@ class BackupsController < ApplicationController
     flag = false
     flag = system("rake backup:export_data")
     if flag == false
-      flash[:error] = "備份失敗, 請在執行一次"
+      flash[:error] = "备份失败, 请在执行一次"
       redirect_to controller: 'backups', action: 'genpage'
     else
-      flash[:notice] = "備份成功"
+      flash[:notice] = "备份成功"
       redirect_to controller: 'backups', action: 'genpage'
     end
   end

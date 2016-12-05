@@ -12,10 +12,10 @@ class FeatureImagesController < ApplicationController
     @photo = FeatureImage.new(photo_params)
     @photo.detail_id = params[:detail_id]
     if @photo.save
-      flash[:notice] = "照片上傳成功"
+      flash[:notice] = "上传成功"
       redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
     else
-      flash[:error] = "功能照片只能允許上傳一張"
+      flash[:error] = "功能照片只能允许上传一张"
       redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
     end
   end
@@ -23,7 +23,7 @@ class FeatureImagesController < ApplicationController
   def destroy
     @photo = FeatureImage.find(params[:id])
     if @photo.destroy
-      flash[:notice] = "照片刪除成功"
+      flash[:notice] = "删除成功"
       redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
     else
       flash[:error] = @photo.error

@@ -5,7 +5,7 @@ class MachinesController < ApplicationController
   def index
     @machines = Machine.order(:id)
     @plains = Plain.select("id, name").map{|p| [p.name, p.id]}
-    @plains.push(["無方案", 0])
+    @plains.push(["无方案", 0])
     p @plains
   end
 

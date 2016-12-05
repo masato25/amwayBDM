@@ -8,7 +8,7 @@ $(document).ready(function () {
   Vue.component('b-select2', {
     props: ['options', 'value'],
     template: '<select>\
-          <option value="0" disabled> 請選擇 </option>\
+          <option value="0" disabled> 请选择 </option>\
           <option v-for="option in options" v-bind:value="option.id"> {{ option.text }} </option>\
         </select>',
     mounted: function () {

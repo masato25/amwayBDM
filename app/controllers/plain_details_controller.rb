@@ -27,7 +27,7 @@ class PlainDetailsController < ApplicationController
   def destroy
     @plain = PlainDetail.find(params[:id])
     if @plain.destroy
-      flash[:notice] = "刪除成功"
+      flash[:notice] = "删除成功"
     else
       flash[:error] = @plain.errors
     end
@@ -69,7 +69,7 @@ class PlainDetailsController < ApplicationController
     end
     render json: respon
   end
-  
+
   private
 
   def plain_detail_params

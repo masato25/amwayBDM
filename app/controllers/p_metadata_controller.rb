@@ -26,7 +26,7 @@ class PMetadataController < ApplicationController
   def destroy
     @p_metadata = PMetadata.find(params[:id])
     if @p_metadata.destroy
-      flash[:notice] = "刪除成功"
+      flash[:notice] = "删除成功"
     else
       flash[:error] = @p_metadata.errors
     end

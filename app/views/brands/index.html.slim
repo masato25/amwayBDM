@@ -1,19 +1,19 @@
 = render 'shared/layout'
   div class="page-header"
-    h2 品牌資訊
+    h2 品牌资讯
     = link_to '建立品牌', new_brand_path
     = render 'shared/notice'
     table class="table"
       thead
         tr
-          th 品牌名稱
+          th 品牌名称
           / th 修改
-          th 刪除
+          th 删除
           th 系列
       tbody
         - @brands.each do |brand|
           tr
             td = brand.BrandName
             / td = link_to '修改', edit_brand_path(brand)
-            td = link_to '刪除', brand, method: :delete, data: { confirm: '確定刪除?' }
-            td = link_to '編輯系列', controller: "series", action: "index", brand_id: brand.id
+            td = link_to '删除', brand, method: :delete, data: { confirm: '确定删除?' }
+            td = link_to '编辑系列', controller: "series", action: "index", brand_id: brand.id

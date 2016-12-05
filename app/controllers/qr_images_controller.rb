@@ -8,7 +8,7 @@ class QrImagesController < ApplicationController
     @photo = QrImage.new(detail_image_params)
     @photo.p_metadata_id = params[:p_metadata_id]
     if @photo.save
-      flash[:notice] = "照片上傳成功"
+      flash[:notice] = "上传成功"
       redirect_to  edit_detail_p_metadata_path(params[:detail_id], params[:p_metadata_id])
     else
       flash[:error] = @photo.errors
@@ -19,7 +19,7 @@ class QrImagesController < ApplicationController
   def destroy
     @photo = QrImage.find(params[:id])
     if @photo.destroy
-      flash[:notice] = "照片刪除成功"
+      flash[:notice] = "删除成功"
       redirect_to  edit_detail_p_metadata_path(params[:detail_id], params[:p_metadata_id])
     else
       flash[:error] = @photo.error

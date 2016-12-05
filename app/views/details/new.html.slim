@@ -1,18 +1,18 @@
 = javascript_include_tag 'apps/detail_new', 'data-turbolinks-track': 'reload'
 = render 'shared/layout'
     div class="page-header"
-      h3 建立產品頁面
-      = link_to '回上頁', action: "index"
+      h3 建立产品页面
+      = link_to '回上页', action: "index"
     = render 'shared/notice'
     = form_for @detail do |f|
       div class="form-group" id="detail-form"
         = f.label "BrandName"        
         b-select2 :options="brands" v-model="selected_brand" v-model.lazy="selected_brand"
-          option value="0" disabled="" 請選擇
+          option value="0" disabled="" 请选择
       div class="form-group"
         = f.label :SeriesId
         select class="form-control" id="sel1" name="series_id"
-          option value="0" disabled="" 請選擇
+          option value="0" disabled="" 请选择
           option v-for="option in series" v-bind:value="option.id"  {{ option.text }} 
       div class="form-group"
         = f.label :DetailName
@@ -29,4 +29,4 @@
       div class="form-group" 
         = f.label :SNColor
         = f.text_field :SNColor, class: 'form-control'
-      = f.submit '儲存', class: 'btn btn-primary' 
+      = f.submit '储存', class: 'btn btn-primary' 

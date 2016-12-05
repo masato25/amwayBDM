@@ -7,10 +7,10 @@
       thead
         tr
           th 品牌
-          th 系列名稱
-          th 系列標題顏色
+          th 系列名称
+          th 系列标题颜色
           th 修改
-          th 刪除
+          th 删除
       tbody
         - @series.each do |s|
           tr
@@ -18,4 +18,4 @@
             td = s.SeriesName
             td = s.TitleColor
             td = link_to '修改', controller: "series", action: "edit", id: s.id
-            td = link_to '刪除', {controller: "series", action: "destroy", id: s.id}, method: :delete, data: { confirm: '確定刪除?' }
+            td = link_to '删除', {controller: "series", action: "destroy", id: s.id}, method: :delete, data: { confirm: '确定删除?' }

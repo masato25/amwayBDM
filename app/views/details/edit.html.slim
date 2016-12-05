@@ -1,8 +1,8 @@
 = javascript_include_tag 'apps/detail_edit', 'data-turbolinks-track': 'reload'
 = render 'shared/layout'
     div class="page-header"
-      h3 建立產品頁面
-      = link_to '回上頁', action: "index"
+      h3 建立产品页面
+      = link_to '回上页', action: "index"
     = render 'shared/notice'
     div class="row" style="padding-bottom: 50px;"
       = form_for @detail do |f|
@@ -29,5 +29,5 @@
           = f.text_field :SNColor, class: 'form-control'
         div class="form-group"
           = f.label :IsShow
-          = f.select :IsShow, options_for_select([['顯示', true], ['隱藏', false]], @detail["IsShow"]), {}, :class => 'form-control'
-        = f.submit '儲存', class: 'btn btn-primary'
+          = f.select :IsShow, options_for_select([['显示', true], ['隐藏', false]], @detail["IsShow"]), {}, :class => 'form-control'
+        = f.submit '储存', class: 'btn btn-primary'

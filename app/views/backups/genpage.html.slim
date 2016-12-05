@@ -1,6 +1,6 @@
 = render 'shared/layout'
   div class="page-header"
-    h2 產生備份
+    h2 产生备份
     = render 'shared/notice'
     form action="/backups/generate" method="post"
       = tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
@@ -8,7 +8,7 @@
   - if @data_export.has_key?(:update_time)
       div class="col-sm-12"
         span class="col-sm-2"
-          = link_to "數據檔案下載", "/#{@data_export[:name]}"
+          = link_to "数据档案下载", "/#{@data_export[:name]}"
         span class="col-sm-2"
           = label_tag @data_export[:update_time]
     

@@ -1,8 +1,8 @@
 = javascript_include_tag 'apps/detail_new', 'data-turbolinks-track': 'reload'
 = render 'shared/layout'
     div class="page-header"
-     h3 建立產品頁面
-     = link_to '回上頁', action: "index"
+     h3 建立产品页面
+     = link_to '回上页', action: "index"
     = render 'shared/notice'
     = form_for @p_metadata, url: detail_p_metadata_path do |f|
       div class="form-group"
@@ -17,7 +17,7 @@
       div class="form-group" 
         = f.label :Color
         = f.text_field :Color, class: 'form-control'
-      = f.submit '儲存', class: 'btn btn-primary' 
+      = f.submit '储存', class: 'btn btn-primary' 
     = form_for @qr_image, url: detail_p_metadata_qr_images_path(@p_metadata.detail_id, @p_metadata.id) do |p|
       div class="form-group"
       = p.label :image
@@ -26,7 +26,7 @@
     - if @qimage
       div class="col-sm-6 panel panel-info" style=""
         div class="panel-heading" 
-          |QR 碼
+          |QR 码
         div class="panel-body"
-          = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :qr_images, action: :destroy, id: @qimage.id, p_metadata_id: @qimage.p_metadata_id }, method: :delete, data: { confirm: '確定刪除?' }
+          = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :qr_images, action: :destroy, id: @qimage.id, p_metadata_id: @qimage.p_metadata_id }, method: :delete, data: { confirm: '确定删除?' }
           = link_to image_tag(@qimage.image.url, class: 'media-object', size: "200x200"), @qimage.image.url, target: '_blank'

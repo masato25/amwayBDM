@@ -35,7 +35,7 @@ class DetailsController < ApplicationController
     @detail.series_id = params["series_id"]
     if @detail.valid?
       @detail.save
-      flash[:notice] = "品牌新增成功"
+      flash[:notice] = "新增成功"
       redirect_to action: "index"
     else
       flash[:error] = @detail.errors

@@ -52,7 +52,7 @@ class BrandsController < ApplicationController
       cookies[:msession] = ENV["api_key"]
       redirect_to action: "index"
     else
-      flash[:error] = "密碼錯誤, 請重試或洽詢管理者"
+      flash[:error] = "密码错误, 请重试或洽询管理者"
       redirect_to :root
     end
   end
@@ -67,5 +67,5 @@ class BrandsController < ApplicationController
    def brand_params
       params.require(:brand).permit(:BrandName)
    end
-   
+
 end

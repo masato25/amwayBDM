@@ -23,7 +23,7 @@ class SeriesController < ApplicationController
     @series.brand_id = params[:brand_id]
     if @series.valid?
       @series.save
-      flash[:notice] = "產品系列新增成功"
+      flash[:notice] = "新增成功"
       redirect_to action: "index"
     else
       flash[:error] = @series.errors
@@ -41,7 +41,7 @@ class SeriesController < ApplicationController
       flash[:notice] = "更新成功"
       redirect_to  edit_brand_series_path(params[:brand_id], params[:id])
     else
-      flash[:success] = "更新失敗, 請檢查輸入選項是否正確"
+      flash[:success] = "更新失败, 请检查输入选项是否正确"
       redirect_to edit_brand_series_path(params[:brand_id], params[:id])
     end
   end

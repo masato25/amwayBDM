@@ -2,7 +2,7 @@
 = render 'shared/layout'
     div class="page-header"
      h3 建立商品
-     = link_to '回上頁', action: "index"
+     = link_to '回上页', action: "index"
     = render 'shared/notice'
     = form_for @p_metadata, url: detail_p_metadata_path do |f|
       div class="form-group"
@@ -17,5 +17,5 @@
       div class="form-group" 
         = f.label :Color
         = f.text_field :Color, class: 'form-control'
-      = f.submit '儲存', class: 'btn btn-primary' 
-    = link_to '回首頁', action: "index"
+      = f.submit '储存', class: 'btn btn-primary' 
+    = link_to '回首页', action: "index"

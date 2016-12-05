@@ -1,10 +1,10 @@
 = render 'shared/layout'
     div class="page-header"
-      h2 建立展示樣板
-      = link_to '回上頁', action: "index"
+      h2 建立展示样板
+      = link_to '回上页', action: "index"
     = render 'shared/notice'
     = form_for @plain do |f|
       div class="form-group" 
         = f.label :name
         = f.text_field :name, class: 'form-control'
-      = f.submit '儲存', class: 'btn btn-primary' 
+      = f.submit '储存', class: 'btn btn-primary' 

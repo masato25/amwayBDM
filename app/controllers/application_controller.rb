@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def check_mysession
     if @session != true
-      flash[:error] = "尚未登入 請登入"
+      flash[:error] = "尚未登入 请登入"
       redirect_to root_path
     end
   end

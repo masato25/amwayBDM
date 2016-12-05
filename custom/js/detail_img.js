@@ -6,9 +6,9 @@ $(document).ready( function () {
     el: ".image_upload",
     data: {
       selected_type: "detail_images",
-      image_types: [{ text: '產品圖片', value: 'detail_images' },
-      { text: '功能圖片', value: 'feature_images' },
-      { text: '成份圖片', value: 'composition_images' }],
+      image_types: [{ text: '产品图片', value: 'detail_images' },
+      { text: '功能图片', value: 'feature_images' },
+      { text: '成份图片', value: 'composition_images' }],
       detail_id: 0,
       url_l: "/details",
       url: "",
