@@ -19,6 +19,10 @@ namespace :backup do
   desc "TODO"
   task clean_db: :environment do
     Brand.delete_all
+    Series.delete_all
+    Detail.delete_all
+    PMetadata.delete_all
+    Machine.delete_all
     system("rm -rf public/system/*")
   end
 
