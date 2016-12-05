@@ -1,6 +1,6 @@
 namespace :backup do
   sqlite_path = "/usr/bin/sqlite3"
-  sql_file = "db/development.sqlite3"
+  sql_file = "db/#{Rails.env}.sqlite3"
   desc "TODO"
   task export_data: :environment do
     system("#{sqlite_path} #{sql_file} .dump > public/restore.sql")
@@ -9,11 +9,10 @@ namespace :backup do
   end
 
   desc "TODO"
-  task import_data: :environment do
-    system("tar -xzvf public/backups.tar.gz -C .")
+  task :import_data, [:file_name, :environment] do |t, args|
+    system("tar -xzvf public/backups/#{args[:file_name]} -C .")
     system("cat public/restore.sql | #{sqlite_path} #{sql_file}")
-    # system("rm -f public/restore.sql")
-    # system("rm -f public/backups.tar.gz")
+    system("rm -f public/restore.sql")
   end
 
   desc "TODO"
@@ -24,6 +23,11 @@ namespace :backup do
     PMetadata.delete_all
     Machine.delete_all
     system("rm -rf public/system/*")
+  end
+
+  desc "A test agrs for Rake task"
+  task :test, :message do |t, args|
+    puts args[:message]
   end
 
 end

@@ -12,10 +12,12 @@ class BackupsController < ApplicationController
 
   def create
     @backups = Backup.new(bakcup_params)
+    file_name = @backups.avatar_file_name
+    logger.info("filename = #{file_name}")
     if @backups.valid?
       @backups.save
       if system("rake backup:clean_db")
-        if system("rake backup:import_data")
+        if system("rake backup:import_data[#{file_name}]")
           Backup.delete_all
           system("rm -f public/backups")
         end
