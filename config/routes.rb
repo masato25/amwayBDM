@@ -42,4 +42,5 @@ Rails.application.routes.draw do
   resources :backups, only: [:index, :create]
   post '/backups/generate' => "backups#generate"
   get '/backups/genpage' => "backups#genpage"
+  resources :video_plains, except: [:show]
 end

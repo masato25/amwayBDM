@@ -1,0 +1,17 @@
+= render 'shared/layout'
+  div class="page-header"
+    h2 影片样板设置
+    = link_to '建立影片樣板', new_video_plain_path
+    = render 'shared/notice'
+    table class="table"
+      thead
+        tr
+          th 名称
+          th 修改
+          th 删除
+      tbody
+        - @vd_palins.each do |plain|
+          tr
+            td = plain["name"]
+            td = link_to '修改', edit_video_plain_path(plain)
+            td = link_to '删除', plain, method: :delete, data: { confirm: '确定删除?' }
