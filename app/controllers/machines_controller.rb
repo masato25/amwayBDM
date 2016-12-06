@@ -119,12 +119,12 @@ class MachinesController < ApplicationController
           end
         end
         xml.Screen2 do
-          videos1.each do |v|
+          videos2.each do |v|
             xml.VideoPath v.media.url
           end
         end
         xml.Screen3 do
-          videos1.each do |v|
+          videos3.each do |v|
             xml.VideoPath v.media.url
           end
         end
