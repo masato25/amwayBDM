@@ -1,0 +1,42 @@
+= render 'shared/layout'
+    div class="page-header"
+      h3 建立影片样板
+      = link_to '回上页', action: "index"
+    = render 'shared/notice'
+    div class="row"
+      div class="row col-sm-4"
+        h3 萤幕一
+        = simple_form_for @video, url: videos_path, :method => :post do |form|
+          = form.input :video_plain_id, :as => :hidden, :input_html => { :value => params[:id] }
+          = form.input :screen, :as => :hidden, :input_html => { :value => 1 }
+          = form.input :media, as: :file
+          = form.submit '上传', class: 'btn btn-primary'
+        - @videos_s1.each do |v|
+          div class="s-grid row"
+            div class="col-sm-1" 
+              = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :videos, action: :destroy, id: v.id }, method: :delete, data: { confirm: '确定删除?' }
+            div class="video_name col-sm-11" = v["media_file_name"]
+      div class="row col-sm-4"
+        h3 萤幕二
+        = simple_form_for @video, url: videos_path, :method => :post do |form|
+          = form.input :video_plain_id, :as => :hidden, :input_html => { :value => params[:id] }
+          = form.input :screen, :as => :hidden, :input_html => { :value => 2 }
+          = form.input :media, as: :file
+          = form.submit '上传', class: 'btn btn-primary'
+        - @videos_s2.each do |v|
+          div class="s-grid row"
+            div class="col-sm-1"
+              = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :videos, action: :destroy, id: v.id }, method: :delete, data: { confirm: '确定删除?' }
+            div class="video_name col-sm-11" = v["media_file_name"]
+      div class="row col-sm-4"
+        h3 萤幕三
+        = simple_form_for @video, url: videos_path, :method => :post do |form|
+          = form.input :video_plain_id, :as => :hidden, :input_html => { :value => params[:id] }
+          = form.input :screen, :as => :hidden, :input_html => { :value => 3 }
+          = form.input :media, as: :file
+          = form.submit '上传', class: 'btn btn-primary'
+        - @videos_s3.each do |v|
+          div class="s-grid row"
+            div class="col-sm-1" 
+              = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :videos, action: :destroy, id: v.id }, method: :delete, data: { confirm: '确定删除?' }
+            div class="video_name col-sm-11" = v["media_file_name"]

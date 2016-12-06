@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   resources :machines, only: [:index, :update] do
     member do
       get 'sync' => "machines#sync_plain_to_machine"
+      get 'sync_video' => "machines#sync_vidoe_plain_to_machine"
     end
   end
   # get '/testxml' => 'machines#sync_plain_to_machine'
@@ -43,4 +44,5 @@ Rails.application.routes.draw do
   post '/backups/generate' => "backups#generate"
   get '/backups/genpage' => "backups#genpage"
   resources :video_plains, except: [:show]
+  resources :videos, only: [:destroy, :create, :edit]
 end

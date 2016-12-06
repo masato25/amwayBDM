@@ -1,3 +1,22 @@
 // Place all the styles related to the VideoPlains controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.video_name {
+  white-space: nowrap;
+  width: 15em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.video_name:hover{
+  overflow: visible;
+  font-weight: bold;
+}
+
+.glyphicon-remove{
+  color: purple;
+}
+.s-grid{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

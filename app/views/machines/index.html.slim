@@ -4,10 +4,11 @@
     = render 'shared/notice'
     div class="panel panel-info"
       div class="panel-heading"
-        | 名称 | 样板 | 更新
+        | 名称 | 产品样板 | 影片样板 | 更新
       - @machines.each do |m|
         div class="panel-body"
           = form_for m, :url => { controller: "machines", action: "update", id: m.id }  do |f|
             span class="col-md-2" = m.name
             span class="col-md-3" = select_tag :plain_id, options_for_select(@plains, m.plain_id), :class => "form-control"
+            span class="col-md-3" = select_tag :video_plain_id, options_for_select(@v_plains, m.video_plain_id), :class => "form-control"
             span class="col-md-2 " = f.submit '储存', class: 'btn btn-primary'

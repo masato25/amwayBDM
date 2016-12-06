@@ -27,6 +27,6 @@ optional: {{if you have scert seeding data , please put it into db folder, then 
     ]
   }
   ```
-
-Video upload support
-  * mp4,avi,mov
+* Get sync idle screen videos for one machine [GET] `${url}/machines/${machine_id}/sync_video`
+  * ex. /machines/3/sync_video
+  * Video upload support - [mp4,avi,mov]

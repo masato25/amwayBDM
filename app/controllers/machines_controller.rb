@@ -5,13 +5,14 @@ class MachinesController < ApplicationController
   def index
     @machines = Machine.order(:id)
     @plains = Plain.select("id, name").map{|p| [p.name, p.id]}
+    @v_plains = VideoPlain.select("id, name").map{|p| [p.name, p.id]}
     @plains.push(["无方案", 0])
-    p @plains
+    @v_plains.push(["无方案", 0])
   end
 
   def update
     @machine = Machine.find(params[:id])
-    if @machine.update({plain_id: params[:plain_id]})
+    if @machine.update({plain_id: params[:plain_id], video_plain_id: params[:video_plain_id]})
       flash[:notice] = "更新成功"
     else
       flash[:error] = @machine.errors
@@ -19,7 +20,6 @@ class MachinesController < ApplicationController
     redirect_to action: "index"
   end
 
-  #pending
   def sync_plain_to_machine
     plain_id = Machine.find(params[:id])["plain_id"]
     myplain = PlainDetail.where("plain_id = #{plain_id}").select("detail_id").map{|o| o.detail_id}
@@ -37,6 +37,15 @@ class MachinesController < ApplicationController
     }
     detailMap = details.group_by{|d| d["series_id"] }
     bxml = buildXML(brandMap, seriesMap, detailMap, plain_id)
+    render :xml => bxml.to_xml
+  end
+
+  def sync_vidoe_plain_to_machine
+    video_plain_id = Machine.find(params[:id])["video_plain_id"]
+    videos1 = Video.where("video_plain_id = #{video_plain_id} and screen = 1")
+    videos2 = Video.where("video_plain_id = #{video_plain_id} and screen = 2")
+    videos3 = Video.where("video_plain_id = #{video_plain_id} and screen = 3")
+    bxml = buildVideoXML(video_plain_id, videos1, videos2, videos3)
     render :xml => bxml.to_xml
   end
 
@@ -94,6 +103,29 @@ class MachinesController < ApplicationController
                 }
               end
             end
+          end
+        end
+      end
+    end
+  end
+
+  def buildVideoXML(video_plain_id, videos1, videos2, videos3)
+    builder = Nokogiri::XML::Builder.new do |xml|
+      xml.VideoPlain do
+        xml.VideoPlainId video_plain_id
+        xml.Screen1 do
+          videos1.each do |v|
+            xml.VideoPath v.media.url
+          end
+        end
+        xml.Screen2 do
+          videos1.each do |v|
+            xml.VideoPath v.media.url
+          end
+        end
+        xml.Screen3 do
+          videos1.each do |v|
+            xml.VideoPath v.media.url
           end
         end
       end
