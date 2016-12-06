@@ -22,7 +22,9 @@ namespace :backup do
     Detail.delete_all
     PMetadata.delete_all
     Machine.delete_all
+    Video.delete_all
     system("rm -rf public/system/*")
+    system("rm -rf public/media/*")
   end
 
   desc "A test agrs for Rake task"

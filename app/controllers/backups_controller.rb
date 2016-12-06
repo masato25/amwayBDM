@@ -19,7 +19,9 @@ class BackupsController < ApplicationController
       if system("rake backup:clean_db")
         if system("rake backup:import_data[#{file_name}]")
           Backup.delete_all
-          system("rm -f public/backups")
+          Video.delete_all
+          system("rm -f public/backups/*")
+          system("rm -f public/meida/*")
         end
       end
       flash[:notice] = "汇入成功"
