@@ -61,9 +61,9 @@ class MachinesController < ApplicationController
           xml.Brand do
             xml.BrandID "BD#{brand_id.to_s.rjust(7, "0")}"
             xml.BrandName findBrandNameById(brand_id)
-            xml.Series do
-              series_ids = seriesMap[brand_id].uniq
-              series_ids.each do |series_id|
+            series_ids = seriesMap[brand_id].uniq
+            series_ids.each do |series_id|
+              xml.Series do
                 xml.SeriesID "NL#{series_id.to_s.rjust(7, "0")}"
                 a_series = findSeriesById(series_id)
                 xml.SeriesName a_series["SeriesName"]
@@ -100,9 +100,9 @@ class MachinesController < ApplicationController
                       end
                     end
                   end
-                }
-              end
-            end
+               }
+             end
+           end
           end
         end
       end
