@@ -1,11 +1,15 @@
-class QrImagesController < ApplicationController
+class ContentImagesController < ApplicationController
   before_action :check_session
+  def index
+    @photos = ContentImage.order('created_at')
+  end
+
   def new
-    @photo = QrImage.new
+    @photo = ContentImage.new
   end
 
   def create
-    @photo = QrImage.new(detail_image_params)
+    @photo = ContentImage.new(detail_image_params)
     @photo.detail_id = params[:detail_id]
     if @photo.save
       flash[:notice] = "上传成功"
@@ -17,7 +21,7 @@ class QrImagesController < ApplicationController
   end
 
   def destroy
-    @photo = QrImage.find(params[:id])
+    @photo = ContentImage.find(params[:id])
     if @photo.destroy
       flash[:notice] = "删除成功"
       redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
@@ -30,6 +34,6 @@ class QrImagesController < ApplicationController
   private
 
   def detail_image_params
-    params.require(:qr_images).permit(:detail_id, :image)
+    params.require(:content_images).permit(:detail_id, :image)
   end
 end

@@ -86,7 +86,7 @@ class MachinesController < ApplicationController
                     end
                     xml.HealthyFeature d["HealthyFeature"]
                     xml.FeatureImagePath d.feature_images
-                    xml.CompositionImagePath d.composition_images
+                    xml.OtherImagePath d.composition_images
                     xml.HealthyTip d["HealthyTip"]
                     xml.Class do
                       d.p_metadata.each do |pmt|
@@ -95,7 +95,7 @@ class MachinesController < ApplicationController
                           xml.Volume pmt["Volume"]
                           xml.Price pmt["Price"]
                           xml.Color pmt["Color"]
-                          xml.QrImagePath pmt.qr_image
+                          # xml.QrImagePath pmt.qr_image
                         end
                       end
                     end

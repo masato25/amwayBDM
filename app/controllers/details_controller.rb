@@ -66,6 +66,8 @@ class DetailsController < ApplicationController
     @dphoto = DetailImage.where("detail_id = #{params[:detail_id]}")
     @fphoto = FeatureImage.where("detail_id = #{params[:detail_id]}").first
     @cphoto = CompositionImage.where("detail_id = #{params[:detail_id]}").first
+    @qrphoto = QrImage.where("detail_id = #{params[:detail_id]}").first
+    @mdphoto = ContentImage.where("detail_id = #{params[:detail_id]}").first
   end
 
   private

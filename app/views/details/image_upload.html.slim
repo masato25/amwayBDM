@@ -16,7 +16,7 @@
         label class="btn btn-default btn-file"
           input accept="image/png,image/gif,image/jpeg, image/jpg" id="uploadImage" type="file" :name="fname"
       div class="form-group"  
-        input class="btn btn-primary" type="submit" name="commit" value="Submit Photo" id="submitPhoto" data-disable-with="Submit Photo"
+        input class="btn btn-primary" type="submit" name="commit" value="上传" id="submitPhoto" data-disable-with="Submit Photo"
   div class="row"
     - @dphoto.each do |c|
       div class="col-sm-6 panel panel-info"
@@ -29,14 +29,30 @@
     - if @fphoto
       div class="col-sm-6 panel panel-info"
         div class="panel-heading" 
-          |功能照片
+          |功能图片
         div class="panel-body"
           = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :feature_images, action: :destroy, id: @fphoto.id }, method: :delete, data: { confirm: '确定删除?' }
           = link_to image_tag(@fphoto.image.url, class: 'media-object'), @fphoto.image.url, target: '_blank'
+    - if @mdphoto
+      div class="col-sm-6 panel panel-info"
+        div class="panel-heading" 
+          |药丸图
+        div class="panel-body"
+          = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :content_images, action: :destroy, id: @mdphoto.id }, method: :delete, data: { confirm: '确定删除?' }
+          = link_to image_tag(@mdphoto.image.url, class: 'media-object'), @mdphoto.image.url, target: '_blank'
+  div class="row"
     - if @cphoto
       div class="col-sm-6 panel panel-info"
         div class="panel-heading" 
-          |成份照片
+          |其他图片
         div class="panel-body"
           = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :composition_images, action: :destroy, id: @cphoto.id }, method: :delete, data: { confirm: '确定删除?' }
           = link_to image_tag(@cphoto.image.url, class: 'media-object'), @cphoto.image.url, target: '_blank'
+    - if @qrphoto
+      div class="col-sm-6 panel panel-info"
+        div class="panel-heading" 
+          |QR码
+        div class="panel-body"
+          = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :qr_images, action: :destroy, id: @qrphoto.id }, method: :delete, data: { confirm: '确定删除?' }
+          = link_to image_tag(@qrphoto.image.url, class: 'media-object'), @qrphoto.image.url, target: '_blank'
+      

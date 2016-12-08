@@ -32,6 +32,7 @@ class PMetadataController < ApplicationController
     end
     redirect_to action: "index"
   end
+  
   def edit
     check_mysession
     @qr_image = QrImage.new

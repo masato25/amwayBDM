@@ -8,6 +8,7 @@ gem "figaro"
 
 # image upload
 gem 'paperclip', "~> 4.2"
+gem 'paperclip-dimension-validator'
 gem 'simple_form'
 
 # style & html

@@ -13,12 +13,15 @@ Rails.application.routes.draw do
 
 
   resources :details do
-    resources :p_metadata do
-      resources :qr_images, only: [:create, :destroy]
-    end
+    resources :p_metadata
+    #  do
+      # resources :qr_images, only: [:create, :destroy]
+    # end
     resources :detail_images, only: [:new, :create, :index, :destroy]
     resources :composition_images, only: [:new, :create, :index, :destroy]
     resources :feature_images, only: [:new, :create, :index, :destroy]
+    resources :content_images, only: [:new, :create, :index, :destroy]
+    resources :qr_images, only: [:new, :create, :index, :destroy]
   end
 
   resources :plains, only: [:new, :create, :index, :destroy, :edit] do

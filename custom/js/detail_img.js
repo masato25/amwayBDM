@@ -7,8 +7,11 @@ $(document).ready( function () {
     data: {
       selected_type: "detail_images",
       image_types: [{ text: '产品图片', value: 'detail_images' },
-      { text: '功能图片', value: 'feature_images' },
-      { text: '成份图片', value: 'composition_images' }],
+        { text: '功能图片', value: 'feature_images' },
+        { text: '药丸图', value: 'content_images' },
+        { text: 'QR码', value: 'qr_images' },
+        { text: '其他图片', value: 'composition_images' },
+      ],
       detail_id: 0,
       url_l: "/details",
       url: "",
