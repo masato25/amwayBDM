@@ -61,46 +61,46 @@ class MachinesController < ApplicationController
           xml.Brand do
             xml.BrandID "BD#{brand_id.to_s.rjust(7, "0")}"
             xml.BrandName findBrandNameById(brand_id)
-            xml.Series do
               series_ids = seriesMap[brand_id].uniq
               series_ids.each do |series_id|
-                xml.SeriesID "NL#{series_id.to_s.rjust(7, "0")}"
-                a_series = findSeriesById(series_id)
-                xml.SeriesName a_series["SeriesName"]
-                xml.TitleColor a_series["TitleColor"]
-                xml.SeriesBackgroundImagePath "/system/detail_images/images/000/000/033/original/bg_nutrilife.png?1481204237"
-                details = detailMap[series_id]
-                details.each{|d|
-                  xml.Detail do
-                    xml.DetailID d["id"]
-                    xml.IsShow d["IsShow"]
-                    plain_detail = findPlainByDetailPlainIds(d["id"], palin_id)
-                    xml.IdentityId plain_detail["id"]
-                    xml.ScreenIndex plain_detail["ScreenIndex"]
-                    xml.TouchRect plain_detail["TouchRect"]
-                    xml.DetailName d["DetailName"]
-                    xml.Feature d["Feature"]
-                    xml.DetailImagePaths do
-                      d.detail_images.each do |dimg|
-                        xml.DetailImagePath dimg
-                      end
-                    end
-                    xml.HealthyFeature d["HealthyFeature"]
-                    xml.FeatureImagePath d.feature_images
-                    xml.OtherImagePath d.composition_images
-                    xml.HealthyTip d["HealthyTip"]
-                    xml.QRCodeImagePath "/system/detail_images/images/000/000/035/original/ak-1Q.jpg?1481204849"
-                    xml.ContentImagePath "/system/detail_images/images/000/000/034/original/S00.png?1481204365"
-                    xml.Class do
-                      d.p_metadata.each do |pmt|
-                        xml.Metadata do
-                          xml.SN pmt["SN"]
-                          xml.Volume pmt["Volume"]
-                          xml.Price pmt["Price"]
-                          xml.Color pmt["Color"]
-                          # xml.QrImagePath pmt.qr_image
+                xml.Series do
+                  xml.SeriesID "NL#{series_id.to_s.rjust(7, "0")}"
+                  a_series = findSeriesById(series_id)
+                  xml.SeriesName a_series["SeriesName"]
+                  xml.TitleColor a_series["TitleColor"]
+                  xml.SeriesBackgroundImagePath "/system/detail_images/images/000/000/033/original/bg_nutrilife.png?1481204237"
+                  details = detailMap[series_id]
+                  details.each{|d|
+                    xml.Detail do
+                      xml.DetailID d["id"]
+                      xml.IsShow d["IsShow"]
+                      plain_detail = findPlainByDetailPlainIds(d["id"], palin_id)
+                      xml.IdentityId plain_detail["id"]
+                      xml.ScreenIndex plain_detail["ScreenIndex"]
+                      xml.TouchRect plain_detail["TouchRect"]
+                      xml.DetailName d["DetailName"]
+                      xml.Feature d["Feature"]
+                      xml.DetailImagePaths do
+                        d.detail_images.each do |dimg|
+                          xml.DetailImagePath dimg
                         end
                       end
+                      xml.HealthyFeature d["HealthyFeature"]
+                      xml.FeatureImagePath d.feature_images
+                      xml.OtherImagePath d.composition_images
+                      xml.HealthyTip d["HealthyTip"]
+                      xml.QRCodeImagePath "/system/detail_images/images/000/000/035/original/ak-1Q.jpg?1481204849"
+                      xml.ContentImagePath "/system/detail_images/images/000/000/034/original/S00.png?1481204365"
+                      xml.Class do
+                        d.p_metadata.each do |pmt|
+                          xml.Metadata do
+                            xml.SN pmt["SN"]
+                            xml.Volume pmt["Volume"]
+                            xml.Price pmt["Price"]
+                            xml.Color pmt["Color"]
+                            # xml.QrImagePath pmt.qr_image
+                          end
+                        end
                     end
                   end
                 }
