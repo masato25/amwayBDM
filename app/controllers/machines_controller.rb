@@ -68,6 +68,7 @@ class MachinesController < ApplicationController
                 a_series = findSeriesById(series_id)
                 xml.SeriesName a_series["SeriesName"]
                 xml.TitleColor a_series["TitleColor"]
+                xml.SeriesBackgroundImagePath "/system/detail_images/images/000/000/033/original/bg_nutrilife.png?1481204237"
                 details = detailMap[series_id]
                 details.each{|d|
                   xml.Detail do
@@ -90,7 +91,6 @@ class MachinesController < ApplicationController
                     xml.HealthyTip d["HealthyTip"]
                     xml.QRCodeImagePath "/system/detail_images/images/000/000/035/original/ak-1Q.jpg?1481204849"
                     xml.ContentImagePath "/system/detail_images/images/000/000/034/original/S00.png?1481204365"
-                    xml.SeriesBackgroundImagePath "/system/detail_images/images/000/000/033/original/bg_nutrilife.png?1481204237"
                     xml.Class do
                       d.p_metadata.each do |pmt|
                         xml.Metadata do
