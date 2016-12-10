@@ -1,7 +1,9 @@
 = render 'shared/layout'
   div class="page-header"
     h2 系列列表
-    = link_to '建立系列', new_brand_series_path
+    = link_to '<button type="button" class="btn btn-success">建立系列</button>'.html_safe , new_brand_series_path
+    span class="left-buffer"
+      = link_to '<button type="button" class="btn btn-default">回上页</button>'.html_safe , brands_path
     = render 'shared/notice'
     table class="table"
       thead
@@ -16,6 +18,8 @@
           tr
             td = s.brand.BrandName
             td = s.SeriesName
-            td = s.TitleColor
-            td = link_to '修改', controller: "series", action: "edit", id: s.id
-            td = link_to '删除', {controller: "series", action: "destroy", id: s.id}, method: :delete, data: { confirm: '确定删除?' }
+            td 
+              p style=("color:#{s.TitleColor};") 
+                = s.TitleColor
+            td = link_to '<button type="button" class="btn btn-info">修改</button>'.html_safe, controller: "series", action: "edit", id: s.id
+            td = link_to '<button type="button" class="btn btn-danger">删除</button>'.html_safe , {controller: "series", action: "destroy", id: s.id}, method: :delete, data: { confirm: '确定删除?' }

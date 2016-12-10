@@ -1,4 +1,5 @@
 class QrImage < ApplicationRecord
+  belongs_to :detail
   has_attached_file :image,
                     :styles => {
                       :original =>  "150x150>"

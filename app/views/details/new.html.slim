@@ -2,31 +2,31 @@
 = render 'shared/layout'
     div class="page-header"
       h3 建立产品页面
-      = link_to '回上页', action: "index"
+      = link_to '<button type="button" class="btn btn-default">回上页</button>'.html_safe, action: "index"
     = render 'shared/notice'
     = form_for @detail do |f|
       div class="form-group" id="detail-form"
-        = f.label "BrandName"        
+        = f.label "品牌名称"        
         b-select2 :options="brands" v-model="selected_brand" v-model.lazy="selected_brand"
           option value="0" disabled="" 请选择
       div class="form-group"
-        = f.label :SeriesId
+        = f.label "系列名称"
         select class="form-control" id="sel1" name="series_id"
           option value="0" disabled="" 请选择
           option v-for="option in series" v-bind:value="option.id"  {{ option.text }} 
       div class="form-group"
-        = f.label :DetailName
+        = f.label "产品名称"
         = f.text_field :DetailName, class: 'form-control'
       div class="form-group" 
-        = f.label :Feature
+        = f.label "产品特点"
         = f.text_area :Feature, class: 'form-control'
       div class="form-group" 
-        = f.label :HealthyFeature
+        = f.label "保健功能"
         = f.text_area :HealthyFeature, class: 'form-control'
       div class="form-group" 
-        = f.label :HealthyTip
+        = f.label "营养小知识"
         = f.text_area :HealthyTip, class: 'form-control'
       div class="form-group" 
-        = f.label :SNColor
+        = f.label "色系"
         = f.text_field :SNColor, class: 'form-control'
       = f.submit '储存', class: 'btn btn-primary' 

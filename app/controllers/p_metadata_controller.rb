@@ -32,13 +32,10 @@ class PMetadataController < ApplicationController
     end
     redirect_to action: "index"
   end
-  
+
   def edit
     check_mysession
-    @qr_image = QrImage.new
     @p_metadata = PMetadata.find(params[:id])
-    @qimage = QrImage.where("p_metadata_id = #{params[:id]}").first
-    p @qimage.methods
   end
 
   def update

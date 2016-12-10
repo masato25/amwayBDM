@@ -7,10 +7,11 @@ Rails.application.routes.draw do
 
   resources :photos, only: [:new, :create, :index, :destroy]
   resources :brands do
-    resources :series
+    resources :series do
+      resources :series_background_images, only: [:create, :destroy]
+    end
   end
   get '/series/find/:brand_id' => "series#find_series"
-
 
   resources :details do
     resources :p_metadata

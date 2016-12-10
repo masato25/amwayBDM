@@ -1,14 +1,28 @@
 = render 'shared/layout'
     div class="page-header"
       h2 修改系列
-      = link_to '回上页', action: "index"
+      = link_to '<button type="button" class="btn btn-default">回上页</button>'.html_safe, action: "index"
     = render 'shared/notice'
     = form_for @series, url: {action: "update"} do |f|
       div class="form-group" 
-        = f.label :SeriesName
+        = f.label "系列名称"
         = f.text_field :SeriesName, class: 'form-control'
       div class="form-group" 
-        = f.label :TitleColor
+        = f.label "标题颜色"
         = f.text_field :TitleColor, class: 'form-control'
-      = f.submit '储存', class: 'btn btn-primary' 
-    = link_to '回首页', action: "index"
+      = f.submit '储存', class: 'btn btn-primary'
+      
+    = form_for @image, url: brand_series_series_background_images_path(@brand_id, @series_id) do |p|
+      div class="form-group"
+      = p.label "系列背景图片"
+      = p.file_field :image, class: 'form-control'
+      div class="top-buffer"
+      = p.submit '上传', class: 'btn btn-primary'
+    div class="top-buffer"
+      - if @bgimage
+        div class="col-sm-6 panel panel-info" style=""
+          div class="panel-heading" 
+            |背景图
+          div class="panel-body"
+            = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :series_background_images, action: :destroy, id: @bgimage.id, series_id: @bgimage.series_id }, method: :delete, data: { confirm: '确定删除?' }
+            = link_to image_tag(@bgimage.image.url, class: 'media-object', size: "200x200"), @bgimage.image.url, target: '_blank'

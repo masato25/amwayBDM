@@ -2,7 +2,7 @@
 = render 'shared/layout'
     div class="page-header"
       h3 建立展示产品
-      = link_to '回上页', action: "index"
+      = link_to '<button type="button" class="btn btn-default">回上页</button>'.html_safe, action: "index"
     = render 'shared/notice'
     div class="row col-sm-12"
       = form_for @pl_detail, url: {controller: "plain_details", action: "create", :plain_id => @plain["id"]} do |f|

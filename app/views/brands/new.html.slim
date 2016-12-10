@@ -1,10 +1,10 @@
 = render 'shared/layout'
     div class="page-header"
       h2 建立品牌页面
-      = link_to '回上页', action: "index"
+      = link_to '<button type="button" class="btn btn-default">回上页</button>'.html_safe, action: "index"
     = render 'shared/notice'
     = form_for @brand do |f|
       div class="form-group" 
-        = f.label :BrandName
+        = f.label "品牌名称"
         = f.text_field :BrandName, class: 'form-control'
       = f.submit '储存', class: 'btn btn-primary' 

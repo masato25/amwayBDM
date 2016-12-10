@@ -1,7 +1,7 @@
 = render 'shared/layout'
   div class="page-header"
     h2 展示样板设置
-    = link_to '建立样板', new_plain_path
+    = link_to '<button type="button" class="btn btn-success">建立样板</button>'.html_safe, new_plain_path
     = render 'shared/notice'
     table class="table"
       thead
@@ -13,5 +13,5 @@
         - @plains.each do |plain|
           tr
             td = plain["name"]
-            td = link_to '修改', edit_plain_path(plain)
-            td = link_to '删除', plain, method: :delete, data: { confirm: '确定删除?' }
+            td = link_to '<button type="button" class="btn btn-info">修改</button>'.html_safe, edit_plain_path(plain)
+            td = link_to '<button type="button" class="btn btn-danger">删除</button>'.html_safe, plain, method: :delete, data: { confirm: '确定删除?' }

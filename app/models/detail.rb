@@ -4,6 +4,7 @@ class Detail < ApplicationRecord
   has_many :detail_image, dependent: :destroy
   has_one :feature_image, dependent: :destroy
   has_one :composition_image, dependent: :destroy
+  has_one :qr_image, dependent: :destroy
   has_many :plain_detail, dependent: :destroy
   belongs_to :series, -> { select(:id, :seriesName, :brand_id) }, class_name: 'Series'
   delegate :brands, :to => :series
@@ -27,6 +28,10 @@ class Detail < ApplicationRecord
 
   def composition_images
     CompositionImage.where("detail_id = #{self[:id]}").map{|i| i.image.url }.first
+  end
+
+  def qr_image
+    QrImage.where("p_metadata_id = #{self[:id]}").map{|i|  i.image.url }.first
   end
 
   def p_metadata

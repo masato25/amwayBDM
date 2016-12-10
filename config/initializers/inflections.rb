@@ -15,4 +15,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   # inflect.acronym 'RESTful'
   inflect.irregular 'metadata', 'metadata'
   inflect.irregular 'series', 'series'
+  inflect.irregular 'p_metadata', 'p_metadata'
 end

@@ -1,21 +1,21 @@
 = javascript_include_tag 'apps/detail_new', 'data-turbolinks-track': 'reload'
 = render 'shared/layout'
     div class="page-header"
-     h3 建立产品页面
-     = link_to '回上页', action: "index"
+     h3 修改商品
+     = link_to '<button type="button" class="btn btn-default">回上页</button>'.html_safe, action: "index"
     = render 'shared/notice'
     = form_for @p_metadata, url: detail_p_metadata_path do |f|
       div class="form-group"
-        = f.label :SN
+        = f.label "商品编号"
         = f.text_field :SN, class: 'form-control'
       div class="form-group" 
-        = f.label :Volume
+        = f.label "规格"
         = f.text_field :Volume, class: 'form-control'
       div class="form-group" 
-        = f.label :Price
+        = f.label "价格"
         = f.text_field :Price, class: 'form-control'
       div class="form-group" 
-        = f.label :Color
+        = f.label "颜色"
         = f.text_field :Color, class: 'form-control'
       = f.submit '储存', class: 'btn btn-primary' 
     / = form_for @qr_image, url: detail_p_metadata_qr_images_path(@p_metadata.detail_id, @p_metadata.id) do |p|

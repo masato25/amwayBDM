@@ -31,6 +31,7 @@ class DetailsController < ApplicationController
   end
 
   def create
+    p detail_params
     @detail = Detail.new(detail_params)
     @detail.series_id = params["series_id"]
     if @detail.valid?
@@ -56,6 +57,12 @@ class DetailsController < ApplicationController
       flash[:error] = @detail.errors
     end
     redirect_to action: "edit"
+  end
+
+  def destroy
+    @detail = Detail.find(params[:id])
+    @detail.destroy
+    redirect_to action: "index"
   end
 
   def image_upload

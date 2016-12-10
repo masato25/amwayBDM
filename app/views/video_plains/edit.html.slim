@@ -1,7 +1,7 @@
 = render 'shared/layout'
     div class="page-header"
       h3 建立影片样板
-      = link_to '回上页', action: "index"
+      = link_to '<button type="button" class="btn btn-default">回上页</button>'.html_safe, action: "index"
     = render 'shared/notice'
     div class="row"
       div class="row col-sm-4"

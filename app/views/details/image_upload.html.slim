@@ -2,6 +2,7 @@
 = render 'shared/layout'
   div class="page-header"
    h3 = "上传产品照片 [ #{@detail["DetailName"]} ]"
+   = link_to '<button type="button" class="btn btn-default">回上页</button>'.html_safe, action: "index"
   = render 'shared/notice'
   span class="detail_id hidden" id=(@id) = @id
   div class="image_upload"
@@ -14,7 +15,7 @@
       = tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
       div class="form-group"
         label class="btn btn-default btn-file"
-          input accept="image/png,image/gif,image/jpeg, image/jpg" id="uploadImage" type="file" :name="fname"
+          input accept="image/png,image/gif,image/jpeg, image/jpg" id="uploadImage" multiple=true type="file" :name="fname" 
       div class="form-group"  
         input class="btn btn-primary" type="submit" name="commit" value="上传" id="submitPhoto" data-disable-with="Submit Photo"
   div class="row"

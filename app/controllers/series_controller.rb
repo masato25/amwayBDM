@@ -33,6 +33,10 @@ class SeriesController < ApplicationController
 
   def edit
     @series = Series.find(params[:id])
+    @image = SeriesBackgroundImage.new()
+    @bgimage = SeriesBackgroundImage.where("series_id = #{params[:id]}").first
+    @brand_id = params[:brand_id]
+    @series_id = params[:id]
   end
 
   def update
@@ -41,14 +45,18 @@ class SeriesController < ApplicationController
       flash[:notice] = "更新成功"
       redirect_to  edit_brand_series_path(params[:brand_id], params[:id])
     else
-      flash[:success] = "更新失败, 请检查输入选项是否正确"
+      flash[:error] = "更新失败, 请检查输入选项是否正确"
       redirect_to edit_brand_series_path(params[:brand_id], params[:id])
     end
   end
 
   def destroy
     @series = Series.find(params[:id])
-    @series.destroy
+    if @series.destroy
+      flash[:notice] = "删除成功"
+    else
+      flash[:error] = "删除失败, 请重试"
+    end
     redirect_to action: "index"
   end
 

@@ -3,7 +3,7 @@
     h2 汇入
     = render 'shared/notice'
     = simple_form_for @backups, url: backups_path do |form|
-      = form.input :avatar, as: :file
+      = form.input :avatar, as: :file, label: false
       = form.submit '上传', class: 'btn btn-primary'
   div
     - @files.each do |f|

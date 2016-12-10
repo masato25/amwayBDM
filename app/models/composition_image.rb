@@ -1,4 +1,5 @@
 class CompositionImage < ApplicationRecord
+  belongs_to :detail
   has_attached_file :image,
                     :styles => {
                       :original =>  "850x500>"

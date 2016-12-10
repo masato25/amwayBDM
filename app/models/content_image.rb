@@ -1,4 +1,5 @@
 class ContentImage < ApplicationRecord
+  belongs_to :detail
   has_attached_file :image,
                     :styles => {
                       :original =>  "50x50>"
