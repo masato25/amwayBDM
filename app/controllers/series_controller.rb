@@ -41,10 +41,11 @@ class SeriesController < ApplicationController
 
   def update
     series = Series.find(params[:id])
-    if series.update!(series_params)
+    begin
+      series.update!(series_params)
       flash[:notice] = "更新成功"
       redirect_to  edit_brand_series_path(params[:brand_id], params[:id])
-    else
+    rescue
       flash[:error] = "更新失败, 请检查输入选项是否正确"
       redirect_to edit_brand_series_path(params[:brand_id], params[:id])
     end

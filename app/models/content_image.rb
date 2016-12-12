@@ -7,5 +7,5 @@ class ContentImage < ApplicationRecord
   validates_attachment_content_type :image,
     :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"],
     size: { in: 03..500.kilobytes }
-  belongs_to :detail
+  validates_uniqueness_of :detail_id
 end

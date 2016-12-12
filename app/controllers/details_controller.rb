@@ -40,6 +40,7 @@ class DetailsController < ApplicationController
       redirect_to action: "index"
     else
       flash[:error] = @detail.errors
+      p @detail.errors
       redirect_to new_detail_path
     end
   end

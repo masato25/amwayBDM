@@ -13,6 +13,10 @@ module AmwayBDM
     # -- all .rb files in that directory are automatically loaded.
     config.autoload_paths += %W(#{config.root}/lib)
     config.time_zone = 'Beijing'
-    config.active_record.default_timezone = :local
+    config.active_record.default_timezone = 'Beijing'
+    # config.active_record.default_timezone = :local
+    # config.i18n.fallbacks = true
+    config.i18n.default_locale = "en"
+    # config.i18n.default_locale = "cn"
   end
 end

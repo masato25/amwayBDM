@@ -12,15 +12,21 @@ class PMetadataController < ApplicationController
 
   def create
     @p_metadata = PMetadata.new(meta_params)
-    @p_metadata.detail_id = params[:detail_id]
-    if @p_metadata.valid?
-      @p_metadata.save
-      flash[:notice] = "新增成功"
+    if PMetadata.where("detail_id = #{params[:detail_id]}").size >= 5
+      flash[:error] = "商品清单只允许5笔,超过上限"
       redirect_to action: "index"
     else
-      flash[:error] = @p_metadata.errors
-      redirect_to new_detail_path
+      @p_metadata.detail_id = params[:detail_id]
+      if @p_metadata.valid?
+        @p_metadata.save
+        flash[:notice] = "新增成功"
+        redirect_to action: "index"
+      else
+        flash[:error] = @p_metadata.errors
+        redirect_to new_detail_path
+      end
     end
+
   end
 
   def destroy

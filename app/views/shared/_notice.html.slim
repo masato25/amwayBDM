@@ -1,4 +1,11 @@
 - if flash[:notice]
   div class="alert alert-success" id="notice" = flash[:notice]
 - elsif flash[:error]
-  div class="alert alert-warning" id="error" = flash[:error]
+  div class="alert alert-warning" id="error" 
+    - if flash[:error].is_a? String
+      = flash[:error]
+    - else
+      - flash[:error].each do |e|
+        - key = t(e[0])
+        - e[1].each do |v|
+          div = "#{key}: #{v}"

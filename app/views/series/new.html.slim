@@ -5,7 +5,7 @@
     = render 'shared/notice'
     = form_for [@brand, @series], url: {action: "create"} do |f|
       div class="form-group" 
-        = f.label "系列名称"
+        = f.label "系列名稱"
         = f.text_field :SeriesName, class: 'form-control'
       div class="form-group" 
         = f.label "标题颜色"

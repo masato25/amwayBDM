@@ -1,0 +1,15 @@
+cn:
+  SeriesName: "系列名稱"
+  activerecord:
+    errors:
+      models:
+        series:
+          attributes:
+            SeriesName:
+              blank: "%{attribute}: 不可為空白"
+              too_short: "%{attribute}: 最少須%{count}個字以上"
+              too_long: "%{attribute}: 最多只能%{count}個字"
+    attributes:
+      series:
+        SeriesName: "系列名稱"
+        TitleColor: "标题颜色"

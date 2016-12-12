@@ -21,3 +21,43 @@
 
 en:
   hello: "Hello world"
+  SeriesName: "系列名称"
+  DetailName: "产品名称"
+  series: "系列"
+  series_id: "系列"
+  detail_id: "產品"
+  media: "影片"
+  Feature: "产品特点"
+  activerecord:
+    errors:
+      models:
+        messages:
+          taken: "已經存在"
+        series:
+          attributes:
+            SeriesName:
+              blank: "不可为空白"
+              too_short: "最少须%{count}个字以上"
+              too_long: "最多只能%{count}个字"
+        blank: "必須存在"
+        detail:
+          attributes:
+            DetailName:
+              blank: "不可为空白"
+              too_short: "最少须%{count}个字以上"
+              too_long: "最多只能%{count}个字"
+            series_id:
+              blank: "不可为空白"
+            Feature:
+              too_long: "最多只能%{count}个字"
+        video:
+          attributes:
+            media:
+              blank: "不可为空"
+
+    attributes:
+      series:
+        SeriesName: "系列名称"
+        TitleColor: "标题颜色"
+      detail:
+        DetailName: "产品名称"
