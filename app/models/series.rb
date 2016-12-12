@@ -3,7 +3,7 @@ class Series < ApplicationRecord
   has_many :detail, dependent: :destroy
   belongs_to :brand
   has_one :series_background_image, dependent: :destroy
-  validates_length_of :SeriesName, :maximum => 8, :allow_blank => false
+  validates_length_of :SeriesName, :maximum => 9, :allow_blank => false
 
   def series_background_image
     SeriesBackgroundImage.where("series_id = #{self[:id]}").map{|i|  i.image.url }.first
