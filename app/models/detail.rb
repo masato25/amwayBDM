@@ -37,6 +37,11 @@ class Detail < ApplicationRecord
     QrImage.where("p_metadata_id = #{self[:id]}").map{|i|  i.image.url }.first
   end
 
+  def content_image
+    ContentImage.where("p_metadata_id = #{self[:id]}").map{|i|  i.image.url }.first
+  end
+
+
   def p_metadata
     PMetadata.where("detail_id = #{self[:id]}")
   end
