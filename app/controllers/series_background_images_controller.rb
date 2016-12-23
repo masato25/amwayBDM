@@ -1,4 +1,5 @@
 class SeriesBackgroundImagesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def create
     begin
       @photo = SeriesBackgroundImage.new(series_background_image_params)

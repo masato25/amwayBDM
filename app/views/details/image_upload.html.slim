@@ -42,13 +42,6 @@
           = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :content_images, action: :destroy, id: @mdphoto.id }, method: :delete, data: { confirm: '确定删除?' }
           = link_to image_tag(@mdphoto.image.url, class: 'media-object'), @mdphoto.image.url, target: '_blank'
   div class="row"
-    - if @cphoto
-      div class="col-sm-6 panel panel-info"
-        div class="panel-heading" 
-          |其他图片
-        div class="panel-body"
-          = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :composition_images, action: :destroy, id: @cphoto.id }, method: :delete, data: { confirm: '确定删除?' }
-          = link_to image_tag(@cphoto.image.url, class: 'media-object'), @cphoto.image.url, target: '_blank'
     - if @qrphoto
       div class="col-sm-6 panel panel-info"
         div class="panel-heading" 
@@ -56,4 +49,12 @@
         div class="panel-body"
           = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :qr_images, action: :destroy, id: @qrphoto.id }, method: :delete, data: { confirm: '确定删除?' }
           = link_to image_tag(@qrphoto.image.url, class: 'media-object'), @qrphoto.image.url, target: '_blank'
+  div class="row"
+    - @cphoto.each do |c|
+      div class="col-sm-6 panel panel-info"
+        div class="panel-heading" 
+          |其他图片
+        div class="panel-body"
+          = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :composition_images, action: :destroy, id: c.id }, method: :delete, data: { confirm: '确定删除?' }
+          = link_to image_tag(c.image.url, class: 'media-object'), c.image.url, target: '_blank'
       

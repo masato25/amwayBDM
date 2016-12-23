@@ -87,11 +87,16 @@ class MachinesController < ApplicationController
                     end
                     xml.HealthyFeature d["HealthyFeature"]
                     xml.FeatureImagePath d.feature_images
-                    xml.OtherImagePath d.composition_images
+                    xml.OtherImagePaths do
+                      d.composition_images.each do |dimg|
+                        xml.OtherImagePath dimg
+                      end
+                    end
                     xml.QRCodeImagePath d.qr_image
                     xml.ContentImagePath d.content_image
                     xml.HealthyTip d["HealthyTip"]
                     xml.Class do
+                      xml.SNColor d["SNColor"]
                       d.p_metadata.each do |pmt|
                         xml.Metadata do
                           xml.SN pmt["SN"]

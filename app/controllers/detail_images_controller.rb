@@ -1,5 +1,7 @@
 class DetailImagesController < ApplicationController
   before_action :check_session
+  skip_before_action :verify_authenticity_token
+
   def index
     @photos = DetailImage.order('created_at')
   end
@@ -14,11 +16,11 @@ class DetailImagesController < ApplicationController
       @photo.detail_id = params[:detail_id]
       if @photo.save
         flash[:notice] = "上传成功"
-        redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
+        redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => params[:detail_id])
       else
         logger.error(@photo.errors) if @photo.errors.size != 0
         flash[:error] = @photo.errors
-        redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
+        redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => params[:detail_id])
       end
     rescue Exception => e
       message = e.message
@@ -27,7 +29,7 @@ class DetailImagesController < ApplicationController
       else
         flash[:error] = message
       end
-      redirect_to  url_for(:controller => :series, :action => :edit, :brand_id => params[:brand_id], :id => params[:series_id])
+      redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => params[:detail_id])
     end
   end
 
@@ -35,10 +37,10 @@ class DetailImagesController < ApplicationController
     @photo = DetailImage.find(params[:id])
     if @photo.destroy
       flash[:notice] = "删除成功"
-      redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
+      redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => params[:detail_id])
     else
       flash[:error] = @photo.error
-      redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
+      redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => params[:detail_id])
     end
   end
 
@@ -47,7 +49,8 @@ class DetailImagesController < ApplicationController
   def detail_image_params
     begin
       params.require(:detail_images).permit(:detail_id, :image)
-    rescue
+    rescue => e
+      logger.error(e)
     end
   end
 end

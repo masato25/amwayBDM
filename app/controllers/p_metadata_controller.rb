@@ -1,5 +1,6 @@
 class PMetadataController < ApplicationController
   before_action :check_session
+  skip_before_action :verify_authenticity_token
   def index
     check_mysession
     detail_id = params[:detail_id]

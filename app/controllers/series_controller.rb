@@ -1,6 +1,7 @@
 class SeriesController < ApplicationController
   before_action :check_session
   before_action :check_brand_existing, only: [:index, :edit, :create, :new]
+  skip_before_action :verify_authenticity_token
 
   def index
     @series = Series.where("brand_id = #{params[:brand_id]}").includes(:brand).order('created_at')
@@ -9,6 +10,20 @@ class SeriesController < ApplicationController
       format.html
       format.json {
         render :json => @series.to_json( :only => [:id, :SeriesName] )
+      }
+    end
+  end
+
+  def list
+    @series = Series.includes(:brand).order('created_at')
+
+    respond_to do |format|
+      format.json {
+        resp = []
+        @series.each{|s|
+          resp = resp.push({id: s.id, SeriesName: s.SeriesName, brand_id: s.brand.id, brand_name: s.brand.BrandName})
+        }
+        render :json => resp.to_json()
       }
     end
   end

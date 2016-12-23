@@ -1,6 +1,7 @@
 class DetailsController < ApplicationController
   before_action :check_session
   before_action :check_detail_existing, only: [:edit, :image_upload]
+  skip_before_action :verify_authenticity_token
 
   def index
     check_mysession
@@ -73,7 +74,7 @@ class DetailsController < ApplicationController
     @photo = DetailImage.new()
     @dphoto = DetailImage.where("detail_id = #{params[:detail_id]}")
     @fphoto = FeatureImage.where("detail_id = #{params[:detail_id]}").first
-    @cphoto = CompositionImage.where("detail_id = #{params[:detail_id]}").first
+    @cphoto = CompositionImage.where("detail_id = #{params[:detail_id]}")
     @qrphoto = QrImage.where("detail_id = #{params[:detail_id]}").first
     @mdphoto = ContentImage.where("detail_id = #{params[:detail_id]}").first
   end

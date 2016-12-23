@@ -11,6 +11,7 @@ class Detail < ApplicationRecord
   validates_length_of :Feature, :maximum => 300, :allow_blank => true
   validates_presence_of :DetailName
   validates :series_id, presence: true
+  validates_uniqueness_of :DetailName
 
   def series_name
     Series.find(self["series_id"])["SeriesName"]
@@ -30,15 +31,15 @@ class Detail < ApplicationRecord
   end
 
   def composition_images
-    CompositionImage.where("detail_id = #{self[:id]}").map{|i| i.image.url }.first
+    CompositionImage.where("detail_id = #{self[:id]}").map{|i| i.image.url }
   end
 
   def qr_image
-    QrImage.where("p_metadata_id = #{self[:id]}").map{|i|  i.image.url }.first
+    QrImage.where("detail_id = #{self[:id]}").map{|i|  i.image.url }.first
   end
 
   def content_image
-    ContentImage.where("p_metadata_id = #{self[:id]}").map{|i|  i.image.url }.first
+    ContentImage.where("detail_id = #{self[:id]}").map{|i|  i.image.url }.first
   end
 
 

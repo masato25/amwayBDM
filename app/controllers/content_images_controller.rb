@@ -1,5 +1,6 @@
 class ContentImagesController < ApplicationController
   before_action :check_session
+  skip_before_action :verify_authenticity_token
   def index
     @photos = ContentImage.order('created_at')
   end
@@ -14,11 +15,11 @@ class ContentImagesController < ApplicationController
       @photo.detail_id = params[:detail_id]
       if @photo.save
         flash[:notice] = "上传成功"
-        redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
+        redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => params[:detail_id])
       else
         logger.error(@photo.errors) if @photo.errors.size != 0
         flash[:error] = "上传失败,档案可能已经存在, 只允许上传一张药丸图"
-        redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
+        redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => params[:detail_id])
       end
     rescue Exception => e
       message = e.message
@@ -27,7 +28,7 @@ class ContentImagesController < ApplicationController
       else
         flash[:error] = message
       end
-      redirect_to  url_for(:controller => :series, :action => :edit, :brand_id => params[:brand_id], :id => params[:series_id])
+      redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => params[:detail_id])
     end
   end
 
@@ -35,10 +36,10 @@ class ContentImagesController < ApplicationController
     @photo = ContentImage.find(params[:id])
     if @photo.destroy
       flash[:notice] = "删除成功"
-      redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
+      redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => params[:detail_id])
     else
       flash[:error] = @photo.error
-      redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => @photo.detail_id)
+      redirect_to  url_for(:controller => :details, :action => :image_upload, :detail_id => params[:detail_id])
     end
   end
 
@@ -47,7 +48,8 @@ class ContentImagesController < ApplicationController
   def detail_image_params
     begin
       params.require(:content_images).permit(:detail_id, :image)
-    rescue
+    rescue => e
+      logger.error(e)
     end
   end
 end

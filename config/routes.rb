@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :series_background_images, only: [:create, :destroy]
     end
   end
+  get '/series' => "series#list"
   get '/series/find/:brand_id' => "series#find_series"
 
   resources :details do
