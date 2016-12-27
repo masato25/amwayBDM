@@ -14,4 +14,5 @@
           tr
             td = plain["name"]
             td = link_to '<button type="button" class="btn btn-info">修改</button>'.html_safe, edit_video_plain_path(plain)
-            td = link_to '<button type="button" class="btn btn-danger">删除</button>'.html_safe, plain, method: :delete, data: { confirm: '确定删除?' }
+            td = link_to '<button type="button" class="btn btn-danger">删除</button>'.html_safe, 
+              {:controller => :video_plains, :action => 'destroy', :id => plain.id }, method: :delete, data: { confirm: '确定删除?' }

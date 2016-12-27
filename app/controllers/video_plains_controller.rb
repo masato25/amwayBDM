@@ -36,6 +36,15 @@ class VideoPlainsController < ApplicationController
     @videos_s3 = Video.where("video_plain_id = #{params[:id]} and screen = 3")
   end
 
+  def destroy
+    @plain = VideoPlain.find(params[:id])
+    if @plain.destroy
+      Video.where("video_plain_id = #{params[:id]}").destroy_all
+      Machine.where("video_plain_id = #{params[:id]}").update_all("video_plain_id = 0")
+    end
+    redirect_to action: "index"
+  end
+
   private
   def video_plain_params
     params.require(:video_plain).permit(:name)
