@@ -82,7 +82,7 @@ class DetailsController < ApplicationController
   private
 
   def detail_params
-    params.require(:detail).permit(:DetailName, :Feature, :HealthyFeature, :HealthyTip, :SNColor, :brand_name, :IsShow)
+    params.require(:detail).permit(:DetailName, :Feature, :HealthyFeature, :HealthyTip, :SNColor, :brand_name, :IsShow, :PolarExprOnly, :ProductPtNumber)
   end
 
   def check_detail_existing
