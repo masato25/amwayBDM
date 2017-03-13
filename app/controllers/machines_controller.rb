@@ -80,6 +80,8 @@ class MachinesController < ApplicationController
                     xml.TouchRect plain_detail["TouchRect"]
                     xml.DetailName d["DetailName"]
                     xml.Feature d["Feature"]
+                    xml.ProductPtNumber d["ProductPtNumber"]
+                    xml.PolarExprOnly d["PolarExprOnly"]
                     xml.DetailImagePaths do
                       d.detail_images.each do |dimg|
                         xml.DetailImagePath dimg
