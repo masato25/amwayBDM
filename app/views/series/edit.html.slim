@@ -10,6 +10,9 @@
       div class="form-group" 
         = f.label "标题颜色"
         = f.text_field :TitleColor, class: 'form-control'
+      div class="form-group"
+        = f.label "色快颜色"
+        = f.text_field :AreaColor, class: 'form-control'
       = f.submit '储存', class: 'btn btn-primary'
       
     = form_for @image, url: brand_series_series_background_images_path(@brand_id, @series_id) do |p|

@@ -90,7 +90,7 @@ class SeriesController < ApplicationController
   private
 
   def series_params
-     params.require(:series).permit(:SeriesName, :TitleColor)
+     params.require(:series).permit(:SeriesName, :TitleColor, :AreaColor)
   end
 
   def check_brand_existing

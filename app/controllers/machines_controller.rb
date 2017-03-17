@@ -68,6 +68,7 @@ class MachinesController < ApplicationController
                 a_series = findSeriesById(series_id)
                 xml.SeriesName a_series["SeriesName"]
                 xml.TitleColor a_series["TitleColor"]
+                xml.AreaColor a_series["AreaColor"]
                 xml.SeriesBackgroundImagePath a_series.series_background_image
                 details = detailMap[series_id]
                 details.each{|d|

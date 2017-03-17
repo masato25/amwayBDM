@@ -11,6 +11,7 @@
           th 品牌
           th 系列名称
           th 系列标题颜色
+          th 色块颜色
           th 修改
           th 删除
       tbody
@@ -21,5 +22,8 @@
             td 
               p style=("color:#{s.TitleColor};") 
                 = s.TitleColor
+            td 
+              p style=("color:#{s.AreaColor};") 
+                = s.AreaColor
             td = link_to '<button type="button" class="btn btn-info">修改</button>'.html_safe, controller: "series", action: "edit", id: s.id
             td = link_to '<button type="button" class="btn btn-danger">删除</button>'.html_safe , {controller: "series", action: "destroy", id: s.id}, method: :delete, data: { confirm: '确定删除?' }
