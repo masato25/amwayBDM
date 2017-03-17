@@ -16,13 +16,15 @@ class BackupsController < ApplicationController
     logger.info("filename = #{file_name}")
     if @backups.valid?
       @backups.save
-      if system("rake backup:clean_db")
+      r = system("rake backup:clean_db")
+      if r || true
         if system("rake backup:import_data[#{file_name}]")
           Backup.delete_all
           Video.delete_all
           system("rm -f public/backups/*")
           system("rm -f public/meida/*")
         end
+        system("rake backup::create_machine")
       end
       flash[:notice] = "汇入成功"
       redirect_to action: "index"
