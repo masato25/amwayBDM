@@ -30,6 +30,7 @@ node_modules
 Schema.xml
 yarn.lock
 form_tmp
+./public/media/*
 
 # Ignore application configuration
 /config/application.yml
