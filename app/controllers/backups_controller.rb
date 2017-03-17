@@ -11,7 +11,7 @@ class BackupsController < ApplicationController
   end
 
   def create
-    @backups = Backup.new(bakcup_params)
+    @backups = Backup.new(backup_params)
     file_name = @backups.avatar_file_name
     logger.info("filename = #{file_name}")
     if @backups.valid?
@@ -57,7 +57,7 @@ class BackupsController < ApplicationController
 
   private
 
-  def bakcup_params
+  def backup_params
     params.require(:backup).permit(:avatar)
   end
 end
