@@ -8,7 +8,7 @@ class Detail < ApplicationRecord
   belongs_to :series, -> { select(:id, :seriesName, :brand_id) }, class_name: 'Series'
   delegate :brands, :to => :series
   validates_length_of :DetailName, :maximum => 30, :allow_blank => false
-  validates_length_of :Feature, :maximum => 300, :allow_blank => true
+  validates_length_of :Feature, :maximum => 500, :allow_blank => true
   validates_presence_of :DetailName
   validates :series_id, presence: true
   validates_uniqueness_of :DetailName

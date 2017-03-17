@@ -1,5 +1,5 @@
 class Series < ApplicationRecord
-  validates_uniqueness_of :SeriesName
+  # validates_uniqueness_of :SeriesName
   validates_presence_of :SeriesName
   has_many :detail, dependent: :destroy
   belongs_to :brand
