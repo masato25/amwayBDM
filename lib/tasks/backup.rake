@@ -4,7 +4,7 @@ namespace :backup do
   desc "TODO"
   task export_data: :environment do
     system("#{sqlite_path} #{sql_file} .dump > public/restore.sql")
-    system("tar -czf public/backups.tar.gz public/restore.sql public/system")
+    system("tar -czf public/backups.tar.gz public/restore.sql public/system public/media")
     system("rm -f public/restore.sql")
   end
 
@@ -21,7 +21,6 @@ namespace :backup do
     Series.delete_all
     Detail.delete_all
     PMetadata.delete_all
-    Machine.delete_all
     Video.delete_all
     system("rm -rf public/system/*")
     system("rm -rf public/media/*")
@@ -30,6 +29,22 @@ namespace :backup do
   desc "A test agrs for Rake task"
   task :test, :message do |t, args|
     puts args[:message]
+  end
+
+  desc "init machines list"
+  task :create_machine do |t, args|
+    Machine.delete_all
+    20.times do |l|
+      next if l == 0
+      a = Machine.new({
+        name: "m#{l}",
+      })
+      if a.save
+
+      else
+        p a.errors
+      end
+    end
   end
 
 end
