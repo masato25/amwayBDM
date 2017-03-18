@@ -20,7 +20,7 @@ Gemfile.lock
 /public/backups/*
 # Ignore all logfiles and tempfiles.
 /log/*
-./logs/*
+logs/thin.log
 /tmp/*
 !/log/.keep
 !/tmp/.keep
