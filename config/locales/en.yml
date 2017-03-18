@@ -26,6 +26,8 @@ en:
   series: "系列"
   series_id: "系列"
   detail_id: "产品"
+  plain_id: "展示样板"
+  plain: "展示样板"
   Detail: "产品"
   detail: "产品"
   media: "影片"
