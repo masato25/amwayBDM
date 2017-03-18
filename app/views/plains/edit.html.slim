@@ -9,9 +9,9 @@
         span class="form-group col-sm-6"
           = label_tag("产品:")
           b-select2 :options="details" v-model="selected_detail" v-model.lazy="selected_detail" name="detail_id"
-          span v-if="selected_detail != 0" 
-            span class="label label-warning" {{details[selected_detail].brand_name}} 
-            span class="label label-default" {{details[selected_detail].series_name}}
+          span v-if="selected_detail > -1"
+            span class="label label-warning" {{details[selected_detail - 1].brand_name}} 
+            span class="label label-default" {{details[selected_detail - 1].series_name}}
         span class="form-group col-sm-3"
           = label_tag("展示萤幕")
           = f.select "ScreenIndex", @number_of_screen, {}, {:class => "form-control"}

@@ -30,7 +30,7 @@ $(document).ready(function () {
     el: ".row",
     data: {
       details: [],
-      selected_detail: 0
+      selected_detail: -1
     },
     mounted: function () {
       var that = this;
