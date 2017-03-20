@@ -11,7 +11,7 @@
         th 商品编号
         th 规格
         th 价格
-        th 颜色
+        / th 颜色
         th 修改
         th 删除
     tbody
@@ -20,8 +20,8 @@
           td = d.SN
           td = d.Volume
           td = d.Price
-          td 
-            p style=("color:#{d.Color};") 
-              = d.Color
+          / td 
+            / p style=("color:#{d.Color};") 
+              / = d.Color
           td = link_to '<button type="button" class="btn btn-info">修改</button>'.html_safe, edit_detail_p_metadata_path(d.detail_id,d.id)
           td = link_to '<button type="button" class="btn btn-danger">删除</button>'.html_safe, detail_p_metadata_path(d.detail_id,d.id), method: :delete, data: { confirm: '确定删除?' }

@@ -14,9 +14,9 @@
       div class="form-group" 
         = f.label "价格"
         = f.text_field :Price, class: 'form-control'
-      div class="form-group" 
-        = f.label "颜色"
-        = f.text_field :Color, class: 'form-control'
+      / div class="form-group" 
+        / = f.label "颜色"
+        / = f.text_field :Color, class: 'form-control'
       = f.submit '储存', class: 'btn btn-primary' 
     / = form_for @qr_image, url: detail_p_metadata_qr_images_path(@p_metadata.detail_id, @p_metadata.id) do |p|
     /   div class="form-group"

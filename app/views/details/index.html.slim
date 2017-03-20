@@ -10,7 +10,7 @@
         th 产品名称
         th 品牌
         th 系列
-        th 颜色
+        / th 颜色
         th 修改
         th 图片
         th 商品列表
@@ -21,7 +21,7 @@
           td = d.DetailName
           td = d.brand_name
           td = d.series_name
-          td = d.SNColor
+          / td = d.SNColor
           td = link_to '<button type="button" class="btn btn-info">修改</button>'.html_safe, edit_detail_path(d)
           td = link_to '<button type="button" class="btn btn-info">图片</button>'.html_safe, { :controller => :details, :action => :image_upload, :detail_id => d.id }
           td = link_to "<button type=\"button\" class=\"btn btn-default\">商品列表 <span class=\"badge\">#{d.number_pmeta}</sapn></button>".html_safe, { :controller => :p_metadata, :action => :index, :detail_id => d.id }
