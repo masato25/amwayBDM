@@ -29,4 +29,10 @@
       / div class="form-group" 
         / = f.label "色系"
         / = f.text_field :SNColor, class: 'form-control'
+      div class="form-group"
+        = f.label "产品批号"
+        = f.text_field :ProductPtNumber, class: 'form-control'
+      div class="form-group"
+        = f.label "南北极探险队专用商品"
+        = f.select :PolarExprOnly, options_for_select([['是', true], ['否', false]], @detail["PolarExprOnly"]), {}, :class => 'form-control'
       = f.submit '储存', class: 'btn btn-primary' 
