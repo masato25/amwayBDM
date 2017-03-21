@@ -2,7 +2,7 @@ class CompositionImage < ApplicationRecord
   belongs_to :detail
   has_attached_file :image,
                     :styles => {
-                      :original =>  "850x500>"
+                      :original =>  "960*1080>"
                     }
   validates_attachment_content_type :image,
     :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"],
