@@ -72,41 +72,43 @@ class MachinesController < ApplicationController
                 xml.SeriesBackgroundImagePath a_series.series_background_image
                 details = detailMap[series_id]
                 details.each{|d|
-                  xml.Detail do
-                    xml.DetailID d["id"]
-                    xml.IsShow d["IsShow"]
-                    plain_detail = findPlainByDetailPlainIds(d["id"], palin_id)
-                    xml.IdentityId plain_detail["id"]
-                    xml.ScreenIndex plain_detail["ScreenIndex"]
-                    xml.TouchRect plain_detail["TouchRect"]
-                    xml.DetailName d["DetailName"]
-                    xml.Feature d["Feature"]
-                    xml.ProductPtNumber d["ProductPtNumber"]
-                    xml.PolarExprOnly d["PolarExprOnly"]
-                    xml.DetailImagePaths do
-                      d.detail_images.each do |dimg|
-                        xml.DetailImagePath dimg
+                  plain_details = findPlainByDetailPlainIds(d["id"], palin_id)
+                  plain_details.each do |plain_detail|
+                    xml.Detail do
+                      xml.DetailID d["id"]
+                      xml.IsShow d["IsShow"]
+                      xml.IdentityId plain_detail["id"]
+                      xml.ScreenIndex plain_detail["ScreenIndex"]
+                      xml.TouchRect plain_detail["TouchRect"]
+                      xml.DetailName d["DetailName"]
+                      xml.Feature d["Feature"]
+                      xml.ProductPtNumber d["ProductPtNumber"]
+                      xml.PolarExprOnly d["PolarExprOnly"]
+                      xml.DetailImagePaths do
+                        d.detail_images.each do |dimg|
+                          xml.DetailImagePath dimg
+                        end
                       end
-                    end
-                    xml.HealthyFeature d["HealthyFeature"]
-                    xml.FeatureImagePath d.feature_images
-                    xml.OtherImagePaths do
-                      d.composition_images.each do |dimg|
-                        xml.OtherImagePath dimg
+                      xml.HealthyFeature d["HealthyFeature"]
+                      xml.FeatureImagePath d.feature_images
+                      xml.OtherImagePaths do
+                        d.composition_images.each do |dimg|
+                          xml.OtherImagePath dimg
+                        end
                       end
-                    end
-                    xml.QRCodeImagePath d.qr_image
-                    xml.ContentImagePath d.content_image
-                    xml.HealthyTip d["HealthyTip"]
-                    xml.Class do
-                      xml.SNColor d["SNColor"]
-                      d.p_metadata.each do |pmt|
-                        xml.Metadata do
-                          xml.SN pmt["SN"]
-                          xml.Volume pmt["Volume"]
-                          xml.Price pmt["Price"]
-                          xml.Color pmt["Color"]
-                          # xml.QrImagePath pmt.qr_image
+                      xml.QRCodeImagePath d.qr_image
+                      xml.ContentImagePath d.content_image
+                      xml.HealthyTip d["HealthyTip"]
+                      xml.Class do
+                        xml.SNColor d["SNColor"]
+                        d.p_metadata.each do |pmt|
+                          xml.Metadata do
+                            xml.SN pmt["SN"]
+                            xml.Volume pmt["Volume"]
+                            xml.Price pmt["Price"]
+                            xml.Color pmt["Color"]
+                            # xml.QrImagePath pmt.qr_image
+                          end
                         end
                       end
                     end
@@ -156,7 +158,7 @@ class MachinesController < ApplicationController
   end
 
   def findPlainByDetailPlainIds(detail_id, plain_id)
-    PlainDetail.where("plain_id = #{plain_id} and detail_id = #{detail_id}").first
+    PlainDetail.where("plain_id = #{plain_id} and detail_id = #{detail_id}")
   end
 
 end
