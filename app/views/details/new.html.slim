@@ -16,7 +16,7 @@
           option v-for="option in series" v-bind:value="option.id"  {{ option.text }} 
       div class="form-group"
         = f.label "产品名称"
-        = f.text_field :DetailName, class: 'form-control'
+        = f.text_area :DetailName, class: 'form-control'
       div class="form-group" 
         = f.label "产品特点"
         = f.text_area :Feature, class: 'form-control'
@@ -26,7 +26,7 @@
       div class="form-group" 
         = f.label "营养小知识"
         = f.text_area :HealthyTip, class: 'form-control'
-      div class="form-group" 
-        = f.label "色系"
-        = f.text_field :SNColor, class: 'form-control'
+      / div class="form-group" 
+        / = f.label "色系"
+        / = f.text_field :SNColor, class: 'form-control'
       = f.submit '储存', class: 'btn btn-primary' 
