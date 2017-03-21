@@ -11,7 +11,7 @@ class Detail < ApplicationRecord
   validates_length_of :Feature, :maximum => 500, :allow_blank => true
   validates_presence_of :DetailName
   validates :series_id, presence: true
-  validates_uniqueness_of :DetailName
+  validates_uniqueness_of :series_id, :scope => [:DetailName]
 
   def series_name
     Series.find(self["series_id"])["SeriesName"]
