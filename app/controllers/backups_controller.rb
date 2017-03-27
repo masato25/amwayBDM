@@ -17,7 +17,7 @@ class BackupsController < ApplicationController
     if @backups.valid?
       @backups.save
       r = system("rake backup:clean_db")
-      if r || true
+      if r
         if system("rake backup:import_data[#{file_name}]")
           Backup.delete_all
           Video.delete_all
