@@ -1,0 +1,11 @@
+<h1>VideoMe</h1>
+
+<div class="container">
+  <h2>Upload file</h2>
+  <%= form_for(@videos) do |f| %>
+    <div class="field">
+       <%= f.label :media %><br>
+       <%= f.file_field :media %>
+     </div>
+  <% end %>
+</div>

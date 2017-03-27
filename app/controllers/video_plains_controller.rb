@@ -31,9 +31,7 @@ class VideoPlainsController < ApplicationController
       default_nscreen = ENV["number_of_screen"].to_i
     end
     @number_of_screen = (1..default_nscreen).to_a
-    @videos_s1 = Video.where("video_plain_id = #{params[:id]} and screen = 1")
-    @videos_s2 = Video.where("video_plain_id = #{params[:id]} and screen = 2")
-    @videos_s3 = Video.where("video_plain_id = #{params[:id]} and screen = 3")
+    @videos_of_plain = Video.where("video_plain_id = #{params[:id]}")
   end
 
   def destroy

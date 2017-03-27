@@ -50,4 +50,7 @@ Rails.application.routes.draw do
   get '/backups/genpage' => "backups#genpage"
   resources :video_plains, except: [:show]
   resources :videos, only: [:destroy, :create, :edit]
+  get "/videos" => "videos#index"
+  get "/video/upload" => "videos#upload", as: "video_upload_page"
+  get '/video_me' => "videos#video_me"
 end
