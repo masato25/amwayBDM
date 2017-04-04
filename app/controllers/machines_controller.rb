@@ -127,18 +127,21 @@ class MachinesController < ApplicationController
       xml.VideoPlain do
         xml.VideoPlainId video_plain_id
         xml.Screen1 do
-          videos1.each do |v|
-            xml.VideoPath v.media.url
+          @a1 = Vp2VdMap.where("screen = 1 AND video_plain_id = #{video_plain_id}")
+          @a1.each do |v|
+            xml.VideoPath v.video.media.url
           end
         end
         xml.Screen2 do
-          videos2.each do |v|
-            xml.VideoPath v.media.url
+          @a2 = Vp2VdMap.where("screen = 2 AND video_plain_id = #{video_plain_id}")
+          @a2.each do |v|
+            xml.VideoPath v.video.media.url
           end
         end
         xml.Screen3 do
-          videos3.each do |v|
-            xml.VideoPath v.media.url
+          @a3 = Vp2VdMap.where("screen = 3 AND video_plain_id = #{video_plain_id}")
+          @a3.each do |v|
+            xml.VideoPath v.video.media.url
           end
         end
       end
