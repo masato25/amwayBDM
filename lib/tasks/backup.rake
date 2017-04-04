@@ -4,7 +4,7 @@ namespace :backup do
   desc "TODO"
   task export_data: :environment do
     system("#{sqlite_path} #{sql_file} .dump > public/restore.sql")
-    system("tar -czf public/backups.tar.gz public/restore.sql public/system public/media")
+    system("tar -czf public/backups.tar.gz public/restore.sql")
     system("rm -f public/restore.sql")
   end
 
@@ -13,6 +13,9 @@ namespace :backup do
     system("tar -xzvf public/backups/#{args[:file_name]} -C .")
     system("cat public/restore.sql | #{sqlite_path} #{sql_file}")
     system("rm -f public/restore.sql")
+    system("rm -rf public/media/*")
+    Vp2VdMap.delete_all
+    Video.delete_all
   end
 
   desc "TODO"
