@@ -20,6 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  "Add files": "上传档案"
   hello: "Hello world"
   SeriesName: "系列名称"
   DetailName: "产品名称"
@@ -32,6 +33,10 @@ en:
   detail: "产品"
   media: "影片"
   Feature: "产品特点"
+  screen: "萤幕"
+  video_id: "影片已经被选择"
+  video_plain_id: "样版"
+  media_file_name: "影片档案"
   activerecord:
     errors:
       models:
