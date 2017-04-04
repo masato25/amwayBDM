@@ -8,7 +8,7 @@
             span 
             span class="btn btn-success fileinput-button" id="upload_area"
               i class="icon-plus icon-white"
-              span Add files...
+              span 上传档案...
               = f.file_field(:media)
           div class="fileupload-loading"
           table class="table table-striped"
@@ -28,8 +28,8 @@
                   = v.media_file_size
                 td
                   div class="col-sm-1"
-                    = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :videos, action: :destroy, id: v.id }, method: :delete, data: { confirm: '确定删除?' }
-  
+                    = link_to '<button type="button" class="btn btn-danger">刪除</button>'.html_safe,  {:controller => :videos, action: :destroy, id: v.id }, method: :delete, data: { confirm: '确定删除?' }
+    
     javascript:
       $(document).ready(function(){
         $("#new_video").fileupload({
