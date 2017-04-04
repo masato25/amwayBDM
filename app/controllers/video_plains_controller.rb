@@ -22,22 +22,42 @@ class VideoPlainsController < ApplicationController
     end
   end
 
+  # def edit
+  #   check_mysession
+  #   @plain = VideoPlain.find(params[:id])
+  #   @video = Video.new()
+  #   default_nscreen = 3
+  #   if ENV["number_of_screen"] =~ /^\d+$/
+  #     default_nscreen = ENV["number_of_screen"].to_i
+  #   end
+  #   @number_of_screen = (1..default_nscreen).to_a
+  #   @videos_of_plain = Video.where("video_plain_id = #{params[:id]}")
+  # end
+
   def edit
     check_mysession
     @plain = VideoPlain.find(params[:id])
-    @video = Video.new()
+    videosTmp = Video.all()
+    @videos = videosTmp.map{|v|
+      [v["media_file_name"], v["id"]]
+    }
+    @vp2vdmap = Vp2VdMap.new()
     default_nscreen = 3
     if ENV["number_of_screen"] =~ /^\d+$/
       default_nscreen = ENV["number_of_screen"].to_i
     end
     @number_of_screen = (1..default_nscreen).to_a
-    @videos_of_plain = Video.where("video_plain_id = #{params[:id]}")
+    @videos_of_plain = []
+    @vps = Vp2VdMap.all()
+    # Video.where("video_plain_id = #{params[:id]}")
   end
 
   def destroy
+    vpid = params[:id]
     @plain = VideoPlain.find(params[:id])
     if @plain.destroy
-      Video.where("video_plain_id = #{params[:id]}").destroy_all
+      @vp2 = Vp2VdMap.where("video_plain_id = #{vpid}").destroy_all
+      # Video.where("video_plain_id = #{params[:id]}").destroy_all
       Machine.where("video_plain_id = #{params[:id]}").update_all("video_plain_id = 0")
     end
     redirect_to action: "index"

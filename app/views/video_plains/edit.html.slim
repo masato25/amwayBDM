@@ -4,66 +4,36 @@
       = link_to '<button type="button" class="btn btn-default">回上页</button>'.html_safe, action: "index"
     = render 'shared/notice'
     div class="row"
-      div class="row col-sm-4"
-        h3 上传影片
-        = form_for @video, url: videos_path, :method => :post, :id => "fileupload" do |f|
-          div.span7
-            span 
-            = f.select :screen, options_for_select([['萤幕一', 1], ['萤幕二', 2], ['萤幕三', 3]], 1), {}, :class => 'form-control'
-            span class="btn btn-success fileinput-button" id="upload_area"
-              i class="icon-plus icon-white"
-              span Add files...
-              = f.text_field(:video_plain_id, :value => params[:id])
-              = f.file_field(:media)
-          div class="fileupload-loading"
-          table class="table table-striped"
-            tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"
-      - if @videos_of_plain.size > 0 
-        table class="table"
+      div class="row"
+        table
           thead
-            tr
-              th 档案名称
-              th 绑定萤幕
-              th 档案大小
-              th 删除
-            - @videos_of_plain.each do |v|
-              tr
-                td
-                  a target="_blank" href="/media/#{v.media_file_name}" #{v.media_file_name}
-                td
-                  = v.screen
-                td
-                  = v.media_file_size
-                td
-                  div class="col-sm-1"
-                    = link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,  {:controller => :videos, action: :destroy, id: v.id }, method: :delete, data: { confirm: '确定删除?' }
-  
-    javascript:
-      $(document).ready(function(){
-        $("#new_video").fileupload({
-          maxChunkSize: 1000000,
-          maxFileSize: 30000000 * 10,
-          change: function(e,data){
-            $("#upload_area").hide();
-          },
-        })
-        $('#new_video').bind('fileuploadprogress', function (e, data) {
-          const uploadedSize = Math.ceil(data.uploadedBytes + data.chunkSize || data.chunkSize)
-          let uploadedPercent = Math.ceil(uploadedSize/data.files[0].size * 100)
-          if (uploadedPercent > 100) {
-            uploadedPercent = 100
-          }
-          console.log(uploadedPercent+ " / " + uploadedSize);
-          $("#progress-display").text(uploadedPercent + "%");
-          if (uploadedPercent == 100) {
-            location.reload();
-          }
-          if (data.files[0].size < data.chunkSize){
-            location.reload();
-          }
-        });
-      })
-      function fileuploadCancel(){
-        location.reload();
-      }
-    = render 'video_plains/tmp_help'
+            th class="col-md-3" 萤幕
+            th class="col-md-4" 影片
+          tbody
+            = form_for @vp2vdmap, url: vp2_vd_maps_url, :method => :post do |f|
+              td class="col-md-3" = f.select :screen, options_for_select([['萤幕一', 1], ['萤幕二', 2], ['萤幕三', 3]], 1), {}, :class => 'form-control'
+              td class="col-md-4" 
+                = f.select :video_id, options_for_select(@videos, 1), {}, :class => 'form-control' 
+                = f.hidden_field(:video_plain_id, :value => params[:id])
+              td class="col-md-1" = f.submit '新增', :class => "btn btn-primary"
+        - if @vps.size > 0 
+          div class="row" id="vdideo_table"
+            table class="table"
+              thead
+                tr
+                  th 档案名称
+                  th 绑定萤幕
+                  th 档案大小
+                  th 删除
+                - @vps.each do |v|
+                  - tvideo = v.video
+                  tr
+                    td
+                      a target="_blank" href="#{tvideo.media.url}" #{tvideo["media_file_name"]}
+                    td
+                      = v.screen
+                    td
+                      = v.video_plain_id
+                    td
+                      div class="col-sm-1"
+                        = link_to '<button type="button" class="btn btn-danger">刪除</button>'.html_safe,  {:controller => :vp2_vd_maps, action: :destroy, id: v.id }, method: :delete, data: { confirm: '确定删除?' }

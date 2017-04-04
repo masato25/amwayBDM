@@ -49,8 +49,10 @@ Rails.application.routes.draw do
   post '/backups/generate' => "backups#generate"
   get '/backups/genpage' => "backups#genpage"
   resources :video_plains, except: [:show]
+  get '/video_plains/:id/edit2' => 'video_plains#edit2'
   resources :videos, only: [:destroy, :create, :edit]
   get "/videos" => "videos#index"
   get "/video/upload" => "videos#upload", as: "video_upload_page"
   get '/video_me' => "videos#video_me"
+  resources :vp2_vd_maps, only: [:create, :update, :destroy , :index]
 end
