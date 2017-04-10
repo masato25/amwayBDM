@@ -48,7 +48,7 @@ class VideoPlainsController < ApplicationController
     end
     @number_of_screen = (1..default_nscreen).to_a
     @videos_of_plain = []
-    @vps = Vp2VdMap.all()
+    @vps = Vp2VdMap.where("video_plain_id = #{params[:id]}")
     # Video.where("video_plain_id = #{params[:id]}")
   end
 
