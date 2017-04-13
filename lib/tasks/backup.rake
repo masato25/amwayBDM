@@ -4,7 +4,7 @@ namespace :backup do
   desc "TODO"
   task export_data: :environment do
     system("#{sqlite_path} #{sql_file} .dump > public/restore.sql")
-    system("tar -czf public/backups.tar.gz public/restore.sql")
+    system("tar -czf public/backups.tar.gz public/restore.sql public/system")
     system("rm -f public/restore.sql")
   end
 
