@@ -2,17 +2,23 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def check_session
-    if ENV["skip_token"]
-      @session = true
-      return @session
+    ss = false
+    if ENV["skip_token"] != "false"
+      ss = true
+    else
+      if cookies.key?("msession")
+        logger.info("cc2")
+        ss = cookies["msession"] == ENV["api_key"]
+      end
     end
-    @session = cookies[:msession] == ENV["api_key"]
+    @session = ss
+    return @session
   end
 
   def check_mysession
-    if @session != true
+    if !@session
       flash[:error] = "尚未登入 请登入"
-      redirect_to root_path
+      redirect_to root_url
     end
   end
 
