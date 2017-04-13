@@ -3,6 +3,7 @@ require 'ostruct'
 class MachinesController < ApplicationController
   before_action :check_session
   def index
+    check_mysession
     @machines = Machine.order(:id)
     @plains = Plain.select("id, name").map{|p| [p.name, p.id]}
     @v_plains = VideoPlain.select("id, name").map{|p| [p.name, p.id]}
